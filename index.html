@@ -6,7 +6,7 @@
     <meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title data-i18n="page_title">İlmihal ve Dini Bilgiler | Ayetin Vakti</title>
+    <title data-i18n="page_title">Dev İlmihal Kütüphanesi | Ayetin Vakti</title>
     <meta name="theme-color" content="#10b981">
     
     <script>
@@ -68,7 +68,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         body { font-family: var(--font-family); background-color: var(--bg-color); color: var(--text-color); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 16px; transition: background-color 0.3s ease, color 0.3s ease; }
         
-        .container { width: 100%; max-width: 650px; display: flex; flex-direction: column; gap: 16px; }
+        .container { width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 16px; }
         
         .navbar { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; box-shadow: var(--shadow); transition: 0.3s; }
         [dir="rtl"] .navbar { flex-direction: row-reverse; }
@@ -92,7 +92,7 @@
         [dir="rtl"] .search-input { padding: 14px 45px 14px 18px; }
         [dir="rtl"] .search-icon { left: auto; right: 16px; }
 
-        /* Kategori Sekmeleri / Filtreler */
+        /* Kategori Sekmeleri */
         .categories-scroll { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
         .categories-scroll::-webkit-scrollbar { display: none; }
         .cat-chip { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: 0.2s; }
@@ -107,17 +107,18 @@
         
         .topic-info { display: flex; flex-direction: column; gap: 4px; }
         .topic-category-tag { font-size: 0.7rem; font-weight: 700; color: var(--accent-color); text-transform: uppercase; letter-spacing: 0.5px; }
-        .topic-title { font-size: 1.05rem; font-weight: 700; color: var(--text-color); }
+        .topic-title { font-size: 1.02rem; font-weight: 700; color: var(--text-color); }
         
         .topic-arrow { font-size: 0.9rem; color: var(--text-muted); transition: transform 0.3s ease; }
         .topic-card.open .topic-arrow { transform: rotate(180deg); color: var(--accent-color); }
 
         .topic-body { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0, 1, 0, 1); background: var(--btn-bg); border-top: 0px solid var(--border-color); }
-        .topic-card.open .topic-body { max-height: 1000px; border-top: 1px solid var(--border-color); transition: max-height 0.5s ease-in-out; }
+        .topic-card.open .topic-body { max-height: 1500px; border-top: 1px solid var(--border-color); transition: max-height 0.5s ease-in-out; }
         
-        .topic-content-inner { padding: 18px; font-size: 0.9rem; line-height: 1.6; color: var(--text-color); display: flex; flex-direction: column; gap: 12px; }
+        .topic-content-inner { padding: 18px; font-size: 0.9rem; line-height: 1.7; color: var(--text-color); display: flex; flex-direction: column; gap: 10px; }
         .topic-content-inner p { color: var(--text-color); }
-        .ref-box { background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-color); padding: 10px 14px; border-radius: 0 10px 10px 0; font-size: 0.85rem; color: var(--text-muted); }
+        .topic-content-inner ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+        .ref-box { background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-color); padding: 10px 14px; border-radius: 0 10px 10px 0; font-size: 0.83rem; color: var(--text-muted); margin-top: 6px; }
         [dir="rtl"] .ref-box { border-left: none; border-right: 4px solid var(--accent-color); border-radius: 10px 0 0 10px; }
 
         .footer { margin: 20px 0; text-align: center; font-size: 0.85rem; color: var(--text-muted); }
@@ -130,132 +131,302 @@
     <!-- Navbar -->
     <header class="navbar">
         <a href="../" class="circle-btn" title="Geri Dön">←</a>
-        <div class="app-title">📖 İlmihal & Dini Bilgiler</div>
+        <div class="app-title">📖 Dev İlmihal Kütüphanesi</div>
         <button class="circle-btn" onclick="toggleTheme()" id="theme-btn" title="Tema Değiştir">☀️</button>
     </header>
 
     <!-- Hero Banner -->
     <div class="ilmihal-hero">
-        <div class="hero-badge">Ehl-i Sünnet Esasları</div>
-        <div class="hero-title">Temel Dini Bilgiler ve İlmihal</div>
-        <div class="hero-subtitle">İbadet, İtikat ve Günlük Hayata Dair Güvenilir Rehberiniz</div>
+        <div class="hero-badge">7'den 70'e Güvenilir Kaynak</div>
+        <div class="hero-title">Kapsamlı Dini Bilgiler ve İlmihal</div>
+        <div class="hero-subtitle">İtikat, İbadet, Ahlak ve Güncel Fıkhi Meseleler</div>
     </div>
 
     <!-- Arama Alanı -->
     <div class="search-box-wrapper">
         <span class="search-icon">🔍</span>
-        <input type="text" class="search-input" id="search-input" placeholder="İlmihal konularında ara (Örn: Abdest, Namaz, Oruç)..." oninput="filterTopics()">
+        <input type="text" class="search-input" id="search-input" placeholder="Kütüphanede ara (Örn: Abdest, Gusül, Zekat, Vitir)..." oninput="filterTopics()">
     </div>
 
     <!-- Kategori Filtreleri -->
     <div class="categories-scroll" id="category-filters">
         <button class="cat-chip active" onclick="filterCategory('all', this)">Tümü</button>
-        <button class="cat-chip" onclick="filterCategory('itikat', this)">İtikat (İman)</button>
+        <button class="cat-chip" onclick="filterCategory('itikat', this)">İtikat & İman</button>
         <button class="cat-chip" onclick="filterCategory('taharet', this)">Taharet (Temizlik)</button>
         <button class="cat-chip" onclick="filterCategory('namaz', this)">Namaz</button>
         <button class="cat-chip" onclick="filterCategory('oruc', this)">Oruç</button>
-        <button class="cat-chip" onclick="filterCategory('helal', this)">Helal & Haram</button>
+        <button class="cat-chip" onclick="filterCategory('zekat', this)">Zekat & Hac</button>
+        <button class="cat-chip" onclick="filterCategory('guncel', this)">Güncel Fıkıh</button>
+        <button class="cat-chip" onclick="filterCategory('ahlak', this)">Ahlak & Adab</button>
     </div>
 
-    <!-- Konular Listesi -->
+    <!-- Konular Listesi (Dev Arşiv) -->
     <div class="topics-list" id="topics-container">
-        <!-- Kart 1 -->
+
+        <!-- 1. İtikat -->
         <div class="topic-card" data-category="itikat" data-keywords="iman islam imanin sartlari kelimei tevhid">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info">
-                    <span class="topic-category-tag">İtikat</span>
-                    <span class="topic-title">İmanın ve İslam'ın Şartları Nelerdir?</span>
+                    <span class="topic-category-tag">İtikat & İman</span>
+                    <span class="topic-title">İmanın ve İslam'ın Şartları Detaylı Açıklaması</span>
                 </div>
                 <span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body">
                 <div class="topic-content-inner">
-                    <p>İslam dini iki temel esas üzerine kurulmuştur: İmanın şartları 6, İslam'ın şartları ise 5 tanedir.</p>
-                    <p><strong>İmanın Şartları:</strong><br>1. Allah'a iman<br>2. Meleklerine iman<br>3. Kitaplarına iman<br>4. Peygamberlerine iman<br>5. Ahiret gününe iman<br>6. Kaza ve kadere (hayır ve şerren Allah'tan olduğuna) iman.</p>
-                    <p><strong>İslam'ın Şartları:</strong><br>1. Kelime-i Şehadet getirmek<br>2. Namaz kılmak<br>3. Oruç tutmak<br>4. Zekat vermek<br>5. Gücü yetene hacca gitmek.</p>
-                    <div class="ref-box">Kaynak: Temel İlmihal Kaynakları / Ömer Nasuhi Bilmen</div>
+                    <p>İslam dini inanç esasları (itikat) ve amelî esaslar (ibadet) olmak üzere ikiye ayrılır.</p>
+                    <p><strong>İmanın 6 Şartı:</strong></p>
+                    <ul>
+                        <li><strong>Allah'a İman:</strong> O'nun varlığına ve birliğine (Tevhid) eksiksiz inanmak.</li>
+                        <li><strong>Meleklerine İman:</strong> Nurdan yaratılmış, iradesiz ve günahsız kullar olduklarını bilmek.</li>
+                        <li><strong>Kitaplarına İman:</strong> Allah tarafından peygamberlere indirilen ilahi kitaplara inanmak.</li>
+                        <li><strong>Peygamberlerine İman:</strong> Hz. Âdem'den Hz. Muhammed'e (s.a.v.) kadar gelen tüm nebilere iman etmek.</li>
+                        <li><strong>Ahiret Gününe İman:</strong> Kıyamet, mahşer, hesap, cennet ve cehennemin hak olduğuna inanmak.</li>
+                        <li><strong>Kaza ve Kadere İman:</strong> Hayır ve şerrin Allah'ın takdiriyle gerçekleştiğine inanmak.</li>
+                    </ul>
+                    <p><strong>İslam'ın 5 Şartı:</strong> Kelime-i şehadet getirmek, namaz kılmak, oruç tutmak, zekat vermek ve hacca gitmek.</p>
+                    <div class="ref-box">Kaynak: Ömer Nasuhi Bilmen, Büyük İslam İlmihali</div>
                 </div>
             </div>
         </div>
 
-        <!-- Kart 2 -->
-        <div class="topic-card" data-category="taharet" data-keywords="abdest nasil alinir gusul teyemmum temizlik">
+        <!-- 2. Taharet / Abdest -->
+        <div class="topic-card" data-category="taharet" data-keywords="abdest nasil alinir farzlari sünnetleri mekruhlari">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info">
                     <span class="topic-category-tag">Taharet (Temizlik)</span>
-                    <span class="topic-title">Abdest Nasıl Alınır? Farzları Nelerdir?</span>
+                    <span class="topic-title">Abdestin Farzları, Sünnetleri ve Alınış Usulü</span>
                 </div>
                 <span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body">
                 <div class="topic-content-inner">
-                    <p>Namaz, tavaf gibi ibadetleri yerine getirebilmek için alınan manevi ve maddi temizliğe abdest denir.</p>
-                    <p><strong>Abdestin Farzı 4'tür:</strong><br>1. Yüzü yıkamak<br>2. Elleri dirseklerle beraber yıkayıp ovmak<br>3. Başın dörtte birini meshetmek<br>4. Ayakları topuklarla beraber yıkamak.</p>
-                    <p><strong>Alınış Sırası (Sünnetleri ile):</strong> "Euzü besmele" çekilerek eller yıkanır, ağza ve buruna üçer kez su verilir. Yüz yıkanır, kollar dirseklere kadar yıkanır. Baş meshedilir, kulaklar temizlenir ve ayaklar yıkanır.</p>
-                    <div class="ref-box">Kaynak: İslam İlmihali - Diyanet İşleri Başkanlığı</div>
+                    <p>Manevi temizliğin anahtarı olan abdest, usulüne uygun alındığında ibadetlerin kabul vesilesidir.</p>
+                    <p><strong>Abdestin Farzı 4'tür:</strong><br>1. Yüzü bir kez yıkamak.<br>2. Elleri dirseklerle beraber bir kez yıkamak.<br>3. Başın dörtte birini meshetmek.<br>4. Ayakları topuklarla beraber bir kez yıkamak.</p>
+                    <p><strong>Sünnetleri:</strong> Eûzü-besmele çekmek, elleri bileklere kadar yıkamak, misvak kullanmak, ağza ve buruna üçer kez su vermek, uzuvları üçer defa yıkamak ve tertibe riayet etmek.</p>
+                    <div class="ref-box">Kaynak: Diyanet İlmihali</div>
                 </div>
             </div>
         </div>
 
-        <!-- Kart 3 -->
-        <div class="topic-card" data-category="namaz" data-keywords="namaz nasil kilinir rekatlari vakitleri">
+        <!-- 3. Gusül Abdesti -->
+        <div class="topic-card" data-category="taharet" data-keywords="gusul boy abdesti cünüp ne zaman alınır farzları">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info">
+                    <span class="topic-category-tag">Taharet (Temizlik)</span>
+                    <span class="topic-title">Gusül (Boy) Abdesti Ne Zaman Alınır, Farzları Nelerdir?</span>
+                </div>
+                <span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body">
+                <div class="topic-content-inner">
+                    <p>Hükmî kirlilikten kurtulmak için bütün vücudun iğne ucu kalmayacak şekilde yıkanmasıdır.</p>
+                    <p><strong>Guslün Farzları 3'tür (Ağza su, buruna su ve tüm bedeni yıkamak):</strong><br>1. Ağza bolca su verip boğgara kadar çalkalamak (mazmaza).<br>2. Buruna bolca su çekip genze kadar ulaştırmak (istinşak).<br>3. Vücutta iğne ucu kadar kuru yer bırakmamak.</p>
+                    <p><strong>Gerektiren Haller:</strong> Cünüplük (ihtilam veya cinsi münasebet), kadınlar için hayız (âdet) ve nifas (lohusalık) hallerinin bitimi.</p>
+                    <div class="ref-box">Kaynak: Heyet / İslam İlmihali</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Teyemmüm -->
+        <div class="topic-card" data-category="taharet" data-keywords="teyemmüm toprak abdesti ne zaman yapılır">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info">
+                    <span class="topic-category-tag">Taharet (Temizlik)</span>
+                    <span class="topic-title">Teyemmüm Abdesti Nasıl Alınır ve Ne Zaman Caizdir?</span>
+                </div>
+                <span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body">
+                <div class="topic-content-inner">
+                    <p>Su bulunamadığı veya suya ulaşma imkanı olmadığı durumlarda toprak veya toprak cinsinden temiz bir cisme ellerin vurulmasıyla yapılan hükmî temizliktir.</p>
+                    <p><strong>Alınışı:</strong> Niyet edilir, eller temiz toprağa vurulup yüz meshedilir. Tekrar toprağa vurulup kollar dirseklere kadar meshedilir.</p>
+                    <div class="ref-box">Kaynak: Temel Fıkıh Bilgileri</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Namaz Vakitleri ve Rekatlar -->
+        <div class="topic-card" data-category="namaz" data-keywords="namaz rekatlari sabah ogle ikindi aksam yatsi vitir">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info">
                     <span class="topic-category-tag">Namaz</span>
-                    <span class="topic-title">Günlük Beş Vakit Namazın Rekatları Nelerdir?</span>
+                    <span class="topic-title">5 Vakit Namazın Rekatları ve Kılınış Düzeni</span>
                 </div>
                 <span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body">
                 <div class="topic-content-inner">
-                    <p>Namaz, İslam'ın direği ve müminin miracıdır. Günlük 5 vakit namaz toplam 40 rekattır:</p>
-                    <p>• <strong>Sabah Namazı:</strong> 2 rekat sünnet, 2 rekat farz olmak üzere toplam 4 rekat.<br>• <strong>Öğle Namazı:</strong> 4 rekat ilk sünnet, 4 rekat farz, 2 rekat son sünnet olmak üzere toplam 10 rekat.<br>• <strong>İkindi Namazı:</strong> 4 rekat sünnet, 4 rekat farz olmak üzere toplam 8 rekat.<br>• <strong>Akşam Namazı:</strong> 3 rekat farz, 2 rekat sünnet olmak üzere toplam 5 rekat.<br>• <strong>Yatsı Namazı:</strong> 4 rekat ilk sünnet, 4 rekat farz, 2 rekat son sünnet ve 3 rekat Vitir vacip olmak üzere toplam 13 rekat.</p>
-                    <div class="ref-box">Kaynak: Hayatü's-Sahabe / İlmihal</div>
+                    <p>Müminin miracı olan beş vakit namazın rekat dağılımı şöyledir:</p>
+                    <ul>
+                        <li><strong>Sabah Namazı:</strong> 2 rekat sünnet, 2 rekat farz (Toplam 4).</li>
+                        <li><strong>Öğle Namazı:</strong> 4 rekat ilk sünnet, 4 rekat farz, 2 rekat son sünnet (Toplam 10).</li>
+                        <li><strong>İkindi Namazı:</strong> 4 rekat sünnet (gayri müekked), 4 rekat farz (Toplam 8).</li>
+                        <li><strong>Akşam Namazı:</strong> 3 rekat farz, 2 rekat sünnet (Toplam 5).</li>
+                        <li><strong>Yatsı Namazı:</strong> 4 rekat ilk sünnet, 4 rekat farz, 2 rekat son sünnet, 3 rekat vitir vacip (Toplam 13).</li>
+                    </ul>
+                    <div class="ref-box">Kaynak: Şafii ve Hanefi İlmihalleri</div>
                 </div>
             </div>
         </div>
 
-        <!-- Kart 4 -->
-        <div class="topic-card" data-category="oruc" data-keywords="oruc bozulan durumlar sahur iftar fitre">
+        <!-- 6. Namazın Bozulması -->
+        <div class="topic-card" data-category="namaz" data-keywords="namazı bozan haller gülmek konuşmak yemek içmek">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info">
+                    <span class="topic-category-tag">Namaz</span>
+                    <span class="topic-title">Namazı Bozan Durumlar Nelerdir?</span>
+                </div>
+                <span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body">
+                <div class="topic-content-inner">
+                    <p>Namazdayken yapılan bazı fiiller namazı batıl eder (geçersiz kılar):</p>
+                    <ul>
+                        <li>Namazda konuşmak, harf veya ses çıkacak şekilde ağlamak/inlemek.</li>
+                        <li>Bir şey yemek veya içmek.</li>
+                        <li>Kible yönünden göğsünü çevirmek.</li>
+                        <li>Gülmek (yanındakilerin duyacağı şekilde kahkaha ile gülmek abdesti de namazı da bozar; sadece tebessüm bozmaz).</li>
+                        <li>Abdestin bozulması.</li>
+                        <li>Örtülmesi gereken yerin (avret mahalli) açılması.</li>
+                    </ul>
+                    <div class="ref-box">Kaynak: Fetvalar / Dinî Meseleler</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Sehiv Secdesi -->
+        <div class="topic-card" data-category="namaz" data-keywords="sehiv secdesi yanlis namaz ne zaman yapilir">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info">
+                    <span class="topic-category-tag">Namaz</span>
+                    <span class="topic-title">Sehiv Secdesi (Yanlış Secdesi) Nasıl Yapılır?</span>
+                </div>
+                <span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body">
+                <div class="topic-content-inner">
+                    <p>Namazda unutarak vaciplerden birinin geciktirilmesi veya terk edilmesi durumunda namazın sonunda yapılan secdeye denir.</p>
+                    <p><strong>Yapılışı:</strong> Namazın son oturuşunda sadece "Ettehiyyatü" okunur, sağ tarafa selam verilip iki secde yapılır, oturulup Ettehiyyatü, Salli-Barik ve Rabbena duaları okunarak selam verilir.</p>
+                    <div class="ref-box">Kaynak: Büyük İslam İlmihali</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. Oruç ve Hükümleri -->
+        <div class="topic-card" data-category="oruc" data-keywords="orucu bozan seyler kefaret kaza imsak sahur">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info">
                     <span class="topic-category-tag">Oruç</span>
-                    <span class="topic-title">Orucu Bozan ve Bozmayan Durumlar Nelerdir?</span>
+                    <span class="topic-title">Orucu Bozan, Kaza ve Kefaret Gerektiren Haller</span>
                 </div>
                 <span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body">
                 <div class="topic-content-inner">
-                    <p>Oruç; imsak vaktinden güneşin batımına (akşam ezanına) kadar yeme, içme ve cinsel ilişkiden uzak durarak yapılan ibadettir.</p>
-                    <p><strong>Orucu Bozan Başlıca Haller:</strong><br>1. Bilerek yemek ve içmek.<br>2. Cinsel ilişki.<br>3. Sigara, nargile gibi tütün mamulleri tüketmek.<br>4. Ağız yoluyla alınan ilaç ve gıdalar.</p>
-                    <p><strong>Orucu Bozmayan Haller:</strong><br>1. Unutarak yemek ve içmek (hatırlanınca hemen ağız yıkanıp devam edilir).<br>2. İstem dışı kusmak.<br>3. Kan vermek (orucu bozmaz ancak zayıf düşürecekse mekruh sayılabilir).<br>4. Duş almak, diş fırçalamak (boğaza kaçmamak şartıyla).</p>
-                    <div class="ref-box">Kaynak: Diyanet Din İşleri Yüksek Kurulu Fetvaları</div>
+                    <p>Oruç ibadetinde bilerek yapılan bazı ihlaller sadece kaza, bazıları ise hem kaza hem de kefaret (61 gün kesintisiz oruç) gerektirir.</p>
+                    <p><strong>Yalnız Kaza Gerektirenler:</strong> Unutarak yiyip içtikten sonra "orucum zaten bozuldu" diyerek bilinçli şekilde yemeğe devam etmek, dişler arasında nohut tanesi kadar kalan şeyi yutmak, zorla yapılan şeyler.</p>
+                    <p><strong>Kaza ve Kefaret Gerektirenler:</strong> Bilerek ve keyfi olarak yemek, içmek veya cinsel ilişkide bulunmak.</p>
+                    <div class="ref-box">Kaynak: Diyanet Din İşleri Yüksek Kurulu</div>
                 </div>
             </div>
         </div>
 
-        <!-- Kart 5 -->
-        <div class="topic-card" data-category="helal" data-keywords="helal lokma haramlar gunahlar">
+        <!-- 9. Zekat ve Sadaka -->
+        <div class="topic-card" data-category="zekat" data-keywords="zekat kimlere duser nisap miktari fitre sadaka">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info">
-                    <span class="topic-category-tag">Helal & Haram</span>
-                    <span class="topic-title">Helal Lokmanın Duaların Kabulündeki Yeri</span>
+                    <span class="topic-category-tag">Zekat & Hac</span>
+                    <span class="topic-title">Zekat Kimlere Farzdır, Nisap Miktarı Nedir?</span>
                 </div>
                 <span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body">
                 <div class="topic-content-inner">
-                    <p>İslam dininde kazancın ve yenen lokmanın helal olması ibadetlerin kabulü ve kalbin huzuru için temel şarttır.</p>
-                    <p>Peygamber Efendimiz (s.a.v.) hadis-i şeriflerinde haram kazançla beslenen bedenlerin dualarının kabulünün zorlaşacağını bildirmiştir. Kul hakkından sakınmak, rızkı meşru yollardan aramak her müslümanın öncelikli vazifesidir.</p>
-                    <div class="ref-box">Kaynak: Hadis-i Şerifler / Riyazü's-Salihin</div>
+                    <p>Zekat; dinen rich (zengin) sayılan müslümanların malının belli bir kısmını ihtiyaç sahibi fakir kimselere vermesidir.</p>
+                    <p><strong>Nisap Miktarı:</strong> 80.18 gram altın veya bunun değerinde nakit para, ticaret malı veya mal varlığına sahip olup üzerinden bir kameri yıl geçmiş olmak.</p>
+                    <p><strong>Oran:</strong> Asıl mal üzerinden kırkta bir (%2.5) oranında zekat verilir.</p>
+                    <div class="ref-box">Kaynak: İslam İlmihali</div>
                 </div>
             </div>
         </div>
+
+        <!-- 10. Hac ve Umre -->
+        <div class="topic-card" data-category="zekat" data-keywords="hac umre farzlari ihram tavaf say">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info">
+                    <span class="topic-category-tag">Zekat & Hac</span>
+                    <span class="topic-title">Haccın Farzları ve Temel Ritüelleri Nelerdir?</span>
+                </div>
+                <span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body">
+                <div class="topic-content-inner">
+                    <p>Ömründe bir defa gücü yeten müslümanlara farz olan hac ibadeti üç temel rükne dayanır:</p>
+                    <p><strong>Haccın Farzları 3'tür:</strong><br>1. İhrama girmek (Niyet ve kıyafet).<br>2. Arafat'ta vakfe yapmak (Arefe günü).<br>3. Kabe'yi tavaf etmek.</p>
+                    <div class="ref-box">Kaynak: Hac Rehberi / Diyanet</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 11. Güncel Fıkıh: Aşı ve İlaçlar -->
+        <div class="topic-card" data-category="guncel" data-keywords="asi olmak orucu bozar mi igne serumkan vermek">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info">
+                    <span class="topic-category-tag">Güncel Fıkıh</span>
+                    <span class="topic-title">Aşı Olmak, İğne Vurdurmak ve Serum Takmak Orucu Bozar mı?</span>
+                </div>
+                <span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body">
+                <div class="topic-content-inner">
+                    <p>Sağlık amaçlı yapılan müdahalelerde Diyanet İşleri Yüksek Kurulu'nun fetvaları şöyledir:</p>
+                    <p>• <strong>İğne ve Aşılar:</strong> Tedavi amaçlı yapılan, gıda veya vitamin özelliği taşımayan iğneler (kas içi veya damar içi) orucu bozmaz. Ancak ağrıyı dindirmek veya zindelik vermek amacıyla gıda içerikli serumlar orucu bozar.</p>
+                    <div class="ref-box">Kaynak: Diyanet Fetva Kurulu</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 12. Güncel Fıkıh: Diş Tedavisi -->
+        <div class="topic-card" data-category="guncel" data-keywords="dis cekimi dolgu orucu bozar mi kanama">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info">
+                    <span class="topic-category-tag">Güncel Fıkıh</span>
+                    <span class="topic-title">Oruçluyken Diş Tedavisi Yapılabilir mi, Oruç Bozulur mu?</span>
+                </div>
+                <span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body">
+                <div class="topic-content-inner">
+                    <p>Oruçluyken diş çekimi, dolgu veya temizletme işlemleri yapılabilir. Tedavi esnasında çıkan kanın veya suyun boğaza kaçmaması şartıyla oruç bozulmaz. Ancak su veya ilacın mideye kaçması halinde oruç kaza edilir.</p>
+                    <div class="ref-box">Kaynak: Çağdaş Dini Meseleler / Fetvalar</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 13. Ahlak ve Günlük Yaşam -->
+        <div class="topic-card" data-category="ahlak" data-keywords="kul hakki geybet yalan soylemek buyuk gunahlar">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info">
+                    <span class="topic-category-tag">Ahlak & Adab</span>
+                    <span class="topic-title">Kul Hakkı ve Gıybetin İslam'daki Yeri</span>
+                </div>
+                <span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body">
+                <div class="topic-content-inner">
+                    <p>İslam ahlakının temelini dürüstlük, hak gözetmek ve insanlara zarar vermemek oluşturur.</p>
+                    <p>• <strong>Kul Hakkı:</strong> Cenab-ı Hak "kul hakkı" ile huzuruna gelenlerin günahlarını, hak sahibi affetmedikçe affetmeyeceğini bildirmiştir. Gıybet (arkadan çekiştirmek), iftira ve mal gaspı en büyük kul haklarındandır.</p>
+                    <div class="ref-box">Kaynak: Riyazü's-Salihin / Hadis Ansiklopedisi</div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </div>
 
-<div class="footer">© Ayetin Vakti • <span>Güvenilir İlmihal ve Dini Bilgiler Kaynağı</span></div>
+<div class="footer">© Ayetin Vakti • <span>7'den 70'e Güvenilir İlmihal Kütüphanesi</span></div>
 
 <script>
     let currentActiveCategory = 'all';
@@ -263,18 +434,13 @@
     function toggleCard(headerElement) {
         const card = headerElement.parentElement;
         const isOpen = card.classList.contains('open');
-        
-        // İsteğe bağlı: Diğer açık kartları kapatmak istersen burayı açabilirsin, şimdilik bağımsız açılıp kapanıyor
         card.classList.toggle('open', !isOpen);
     }
 
     function filterCategory(category, chipElement) {
         currentActiveCategory = category;
-        
-        // Aktif çipi güncelle
         document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
         chipElement.classList.add('active');
-
         applyFilters();
     }
 
@@ -299,7 +465,7 @@
                 card.style.display = 'block';
             } else {
                 card.style.display = 'none';
-                card.classList.remove('open'); // Gizlenen kartın detayını da kapat
+                card.classList.remove('open');
             }
         });
     }
