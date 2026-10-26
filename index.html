@@ -6,7 +6,7 @@
     <meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title data-i18n="page_title">70+ Detaylı İlmihal Ansiklopedisi | Ayetin Vakti</title>
+    <title data-i18n="page_title">70+ Başlıklı İlmihal Kütüphanesi | Ayetin Vakti</title>
     <meta name="theme-color" content="#10b981">
     
     <script>
@@ -122,6 +122,10 @@
         .ref-box { background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-color); padding: 10px 14px; border-radius: 0 8px 8px 0; font-size: 0.81rem; color: var(--text-muted); margin-top: 6px; font-weight: 600; }
         [dir="rtl"] .ref-box { border-left: none; border-right: 4px solid var(--accent-color); border-radius: 8px 0 0 8px; }
 
+        /* Bilgi notu ve boş sonuç mesajı */
+        .info-note { font-size: 0.8rem; line-height: 1.6; color: var(--text-muted); background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 12px 14px; }
+        .empty-msg { display: none; text-align: center; color: var(--text-muted); font-size: 0.9rem; padding: 20px 0; }
+
         .footer { margin: 20px 0; text-align: center; font-size: 0.83rem; color: var(--text-muted); }
         .footer span { color: var(--accent-color); font-weight: 600; }
     </style>
@@ -131,1098 +135,1244 @@
 <div class="container">
     <!-- Navbar -->
     <header class="navbar">
-        <a href="../" class="circle-btn" title="Geri Dön">←</a>
-        <div class="app-title">📖 70+ Detaylı İlmihal Kütüphanesi</div>
+        <a href="../" class="circle-btn" id="back-btn" title="Geri Dön">←</a>
+        <div class="app-title">📖 <span data-i18n="nav_title">70+ Başlıklı İlmihal Kütüphanesi</span></div>
         <button class="circle-btn" onclick="toggleTheme()" id="theme-btn" title="Tema Değiştir">☀️</button>
     </header>
 
     <!-- Hero Banner -->
     <div class="ilmihal-hero">
-        <div class="hero-badge">Gerçek Kaynaklı • %100 Detaylı</div>
-        <div class="hero-title">70+ Başlıklı Kapsamlı İlmihal Ansiklopedisi</div>
-        <div class="hero-subtitle">İtikat, İbadet, Temizlik, Güncel Fıkıh ve Aile Esasları</div>
+        <div class="hero-badge" data-i18n="hero_badge">Kaynaklı • Özet İlmihal</div>
+        <div class="hero-title" data-i18n="hero_title">70+ Başlıklı İlmihal Kütüphanesi</div>
+        <div class="hero-subtitle" data-i18n="hero_subtitle">İtikat, İbadet, Temizlik, Güncel Fıkıh ve Aile Esasları</div>
     </div>
+
+    <!-- Bilgilendirme -->
+    <div class="info-note" data-i18n="disclaimer">Bu sayfadaki bilgiler genel bilgilendirme amaçlı özetlerdir ve ağırlıklı olarak Hanefî mezhebine göredir. Özel durumlar ve güncel fetvalar için müftülüğe veya Diyanet Alo 190 Dini Bilgi Hattı'na danışınız.</div>
+    <div class="info-note" id="lang-note" style="display:none" data-i18n="lang_note"></div>
 
     <!-- Arama Alanı -->
     <div class="search-box-wrapper">
         <span class="search-icon">🔍</span>
-        <input type="text" class="search-input" id="search-input" placeholder="70+ konu arasında ara (Örn: Abdest, Sehiv, Zekat, Nikah)..." oninput="filterTopics()">
+        <input type="text" class="search-input" id="search-input" data-i18n-placeholder="search_ph" placeholder="Konu ara (Örn: Abdest, Sehiv, Zekât, Nikâh)..." oninput="filterTopics()">
     </div>
 
     <!-- Kategori Filtreleri -->
     <div class="categories-scroll" id="category-filters">
-        <button class="cat-chip active" onclick="filterCategory('all', this)">Tümü (70+ Başlık)</button>
-        <button class="cat-chip" onclick="filterCategory('itikat', this)">İtikat & İman</button>
-        <button class="cat-chip" onclick="filterCategory('taharet', this)">Taharet & Abdest</button>
-        <button class="cat-chip" onclick="filterCategory('namaz', this)">Namaz Esasları</button>
-        <button class="cat-chip" onclick="filterCategory('oruc', this)">Oruç & Hac</button>
-        <button class="cat-chip" onclick="filterCategory('guncel', this)">Güncel Fıkıh</button>
-        <button class="cat-chip" onclick="filterCategory('aile', this)">Aile & Hayat</button>
-        <button class="cat-chip" onclick="filterCategory('ahlak', this)">Ahlak & Günahlar</button>
+        <button class="cat-chip active" onclick="filterCategory('all', this)" data-i18n="cat_all">Tümü (70+ Başlık)</button>
+        <button class="cat-chip" onclick="filterCategory('itikat', this)" data-i18n="cat_itikat">İtikat &amp; İman</button>
+        <button class="cat-chip" onclick="filterCategory('taharet', this)" data-i18n="cat_taharet">Taharet &amp; Abdest</button>
+        <button class="cat-chip" onclick="filterCategory('namaz', this)" data-i18n="cat_namaz">Namaz Esasları</button>
+        <button class="cat-chip" onclick="filterCategory('oruc', this)" data-i18n="cat_oruc">Oruç &amp; Hac</button>
+        <button class="cat-chip" onclick="filterCategory('guncel', this)" data-i18n="cat_guncel">Güncel Fıkıh</button>
+        <button class="cat-chip" onclick="filterCategory('aile', this)" data-i18n="cat_aile">Aile &amp; Hayat</button>
+        <button class="cat-chip" onclick="filterCategory('ahlak', this)" data-i18n="cat_ahlak">Ahlak &amp; Günahlar</button>
     </div>
 
-    <!-- Konular Listesi (Eksiksiz Tam 70+ Madde, Detaylı İçerikler) -->
-    <div class="topics-list" id="topics-container">
+    <!-- Konular (içerik Türkçedir; Arapça arayüzde bile soldan sağa okunur) -->
+    <div class="topics-list" id="topics-container" lang="tr" dir="ltr">
 
         <!-- 1 -->
-        <div class="topic-card" data-category="itikat" data-keywords="1 iman islam imanin sartlari kelimei tevhid">
+        <div class="topic-card" data-category="itikat" data-keywords="1 imanin ve islam'in sartlari iman islam sartlari kelimei tevhid">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">İtikat & İman</span><span class="topic-title">1. İmanın ve İslam'ın Şartları Detaylı Açıklaması</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">1. İmanın ve İslam'ın Şartları</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>İslam dini iman ve amel bütünü üzerine kurulmuştur. Dinimizin temelleri şu esaslara dayanır:</p>
+                <p>İslam dini iman ve amel bütünü üzerine kurulmuştur. Temel esaslar şunlardır:</p>
                 <ul>
-                    <li><b>İmanın Şartları (6 Tane):</b> Allah'a iman, meleklerine iman, kitaplarına iman, peygamberlerine iman, ahiret gününe iman, kaza ve kaderin (hayır ve şerrin Allah'tan geldiğinin) inkar edilemez hakikatine iman.</li>
-                    <li><b>İslam'ın Şartları (5 Tane):</b> Kelime-i şehadet getirmek, beş vakit namaz kılmak, ramazan orucu tutmak, zekat vermek ve gücü yetenler için hac ibadetini yerine getirmektir.</li>
+                    <li><b>İmanın şartları (6):</b> Allah'a, meleklerine, kitaplarına, peygamberlerine ve ahiret gününe iman; bir de kadere, yani hayrın da şerrin de Allah'ın takdiriyle olduğuna iman.</li>
+                    <li><b>İslam'ın şartları (5):</b> Kelime-i şehadet getirmek, günde beş vakit namaz kılmak, Ramazan orucunu tutmak, zekât vermek ve gücü yetenin hac yapması.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Ömer Nasuhi Bilmen, Büyük İslam İlmihali</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali; Ö. Nasuhi Bilmen, Büyük İslam İlmihali</div>
             </div></div>
         </div>
 
         <!-- 2 -->
-        <div class="topic-card" data-category="itikat" data-keywords="2 buyuk gunah işleyen dinden cikar mi ehlisunnet">
+        <div class="topic-card" data-category="itikat" data-keywords="2 buyuk gunah isleyen kimse dinden cikar mi? buyuk gunah fasik ehlisunnet">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">İtikat & İman</span><span class="topic-title">2. Büyük Günah İşleyen Kimse Dinden Çıkar mı?</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">2. Büyük Günah İşleyen Kimse Dinden Çıkar mı?</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Ehl-i Sünnet ve'l-Cemaat akidesine göre; iman eden ve kalbinde zerre kadar zikir/tevhid bulunan bir kimse, şirk (Allah'a ortak koşmak) olmadıkça büyük günah işlemekle (zina, hırsızlık, yalan vb.) dinden çıkmaz.</p>
+                <p>Ehl-i Sünnet'e göre iman eden kimse, büyük günah (zina, hırsızlık, yalan, içki vb.) işlemekle dinden çıkmaz. Bu yaklaşım, büyük günah işleyeni kâfir sayan Hâricîlerin görüşünden ayrılır. Dinden çıkaran şey ise küfür ve şirktir.</p>
                 <ul>
-                    <li>Bu kimse "günahkâr mümin" (fasık) olarak kabul edilir.</li>
-                    <li>Tövbe etmeden ölürse, ahirette Allah'ın dilediği takdirde cezalandırabileceği, dilerse rahmetiyle doğrudan affedebileceği ehl-i kıbledir. Cezasını çektikten sonra nihayetinde cennete girecektir.</li>
+                    <li>Böyle bir kişiye günahkâr mümin (fâsık) denir; imanı devam eder.</li>
+                    <li>Tövbe etmeden ölürse durumu Allah'a kalmıştır: Dilerse rahmetiyle affeder, dilerse günahı kadar cezalandırır. İmanı olduğu için sonunda cennete girer.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Nesefi Akaidi ve Şerhleri</div>
+                <p>Bu, günahı hafife almak anlamına gelmez; günahtan sakınmak ve tövbe etmek esastır.</p>
+                <div class="ref-box">Kaynak: Nesefî Akâidi ve şerhleri</div>
             </div></div>
         </div>
 
         <!-- 3 -->
-        <div class="topic-card" data-category="itikat" data-keywords="3 kaza kader irade cuzi külli irade">
+        <div class="topic-card" data-category="itikat" data-keywords="3 kaza, kader ve cuz'i irade kaza kader irade cuzi kulli">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">İtikat & İman</span><span class="topic-title">3. Kaza, Kader ve Cüzi İrade Meselesi</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">3. Kaza, Kader ve Cüz'î İrade</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Kader, Allah'ın evrendeki her şeyi ezeli ilmiyle takdir etmesi; kaza ise takdir edilen bu ezelî planın yeri ve zamanı geldiğinde yaratılmasıdır.</p>
+                <p>Kader, Allah'ın her şeyi ezelî ilmiyle bilmesi ve takdir etmesidir. Kaza ise bu takdirin vakti geldiğinde yaratılarak gerçekleşmesidir.</p>
                 <ul>
-                    <li><b>Küllî İrade:</b> Yalnızca Yüce Allah'a mahsus olan, dilediğini mutlak surette yaratma ve irade etme gücüdür.</li>
-                    <li><b>Cüzi İrade:</b> İnsana verilen sınırlı irade ve seçim hakkıdır. İnsan iradesini bir yönde kullanır, Allah da o fiili yaratır. Kul seçiminden mesuldür.</li>
+                    <li><b>Küllî irade:</b> Yalnızca Allah'a ait olan, dilediğini yaratma ve irade etme gücüdür.</li>
+                    <li><b>Cüz'î irade:</b> İnsana verilen sınırlı irade ve tercih gücüdür. Kul tercihini yapar, Allah da fiili yaratır; bu yüzden insan tercihlerinden sorumludur.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Diyanet İslam İlmihali</div>
+                <p>Kader, çalışmayı ve tedbiri bırakmak için bahane edilemez; tevekkül, tedbirle birlikte olur.</p>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 4 -->
-        <div class="topic-card" data-category="itikat" data-keywords="4 kelimei şehadet manası ehedur">
+        <div class="topic-card" data-category="itikat" data-keywords="4 kelime-i sehadet ve kelime-i tevhid'in manasi kelimei sehadet tevhid esehedu">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">İtikat & İman</span><span class="topic-title">4. Kelime-i Şehadet ve Kelime-i Tevhid'in Manası</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">4. Kelime-i Şehadet ve Kelime-i Tevhid'in Manası</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>İslam'ın kapısı ve müminliğin temeli olan bu iki kelime şunları ifade eder:</p>
+                <p>İslam'ın kapısı olan bu iki kelime şunları ifade eder:</p>
                 <ul>
-                    <li><b>Kelime-i Şehadet:</b> "Eşhedü en lâ ilâhe illallah ve eşhedü enne Muhammeden abduhû ve resûlüh" (Şahitlik ederim ki Allah'tan başka ilah yoktur ve yine şahitlik ederim ki Muhammed O'nun kulu ve elçisidir.)</li>
-                    <li><b>Kelime-i Tevhid:</b> "Lâ ilâhe illallâh Muhammedün resûlullah" (Allah'tan başka ilah yoktur, Hz. Muhammed O'nun elçisidir.) Bu ifade tevhidin en özlü özetidir.</li>
+                    <li><b>Kelime-i şehadet:</b> “Eşhedü en lâ ilâhe illallâh ve eşhedü enne Muhammeden abdühû ve resûlüh” (Şahitlik ederim ki Allah'tan başka ilah yoktur ve yine şahitlik ederim ki Muhammed O'nun kulu ve elçisidir.)</li>
+                    <li><b>Kelime-i tevhid:</b> “Lâ ilâhe illallâh, Muhammedün resûlullâh” (Allah'tan başka ilah yoktur, Muhammed Allah'ın elçisidir.)</li>
                 </ul>
-                <div class="ref-box">Kaynak: Temel Dini Bilgiler</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 5 -->
-        <div class="topic-card" data-category="itikat" data-keywords="5 peygamberlere iman ismet sıdk">
+        <div class="topic-card" data-category="itikat" data-keywords="5 peygamberlere iman ve peygamberlerin sifatlari peygamber sifatlari ismet sidk emanet fetanet teblig">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">İtikat & İman</span><span class="topic-title">5. Peygamberlere İman ve Sıfatları</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">5. Peygamberlere İman ve Peygamberlerin Sıfatları</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Peygamberler Allah ile insanlar arasında elçi olan seçkin insanlardır. Peygamberlerin sıfatları şunlardır:</p>
+                <p>Peygamberler, Allah'ın emirlerini insanlara ulaştırmakla görevlendirdiği seçkin insanlardır. Hz. Muhammed (s.a.v.) son peygamberdir. Peygamberlerin temel sıfatları şunlardır:</p>
                 <ul>
-                    <li><b>Sıdk:</b> Özü sözü doğru olmak, asla yalan söylememek.</li>
-                    <li><b>Emanet:</b> Güvenilir olmak, emanete hıyanet etmemek.</li>
-                    <li><b>Fetanet:</b> Son derece zeki ve üstün kavrayış sahibi olmak.</li>
-                    <li><b>İsmet:</b> Günahlardan korunmuş olmak (günahsızlık).</li>
-                    <li><b>Tebliğ:</b> Allah'ın emirlerini eksiksiz şekilde insanlara ulaştırmak.</li>
+                    <li><b>Sıdk:</b> Doğru sözlü olmak, asla yalan söylememek.</li>
+                    <li><b>Emanet:</b> Güvenilir olmak.</li>
+                    <li><b>Fetanet:</b> Üstün zekâ ve kavrayış sahibi olmak.</li>
+                    <li><b>İsmet:</b> Günahlardan korunmuş olmak.</li>
+                    <li><b>Tebliğ:</b> Allah'ın emirlerini eksiksiz ulaştırmak.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Akaid Kitapları</div>
+                <div class="ref-box">Kaynak: Akaid kitapları; Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 6 -->
-        <div class="topic-card" data-category="itikat" data-keywords="6 ahiret hayati berzah kabir azabi">
+        <div class="topic-card" data-category="itikat" data-keywords="6 ahiret hayati, kabir suali ve berzah alemi ahiret berzah kabir azabi munker nekir">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">İtikat & İman</span><span class="topic-title">6. Ahiret Hayatı, Kabir Suali ve Berzah Alemi</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">6. Ahiret Hayatı, Kabir Suali ve Berzah Âlemi</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Ölümle başlayan ve kıyamete kadar süren ara döneme **Berzah alemi** denir. Bu süreçte şu aşamalar yaşanır:</p>
+                <p>Ölümle başlayıp kıyamete kadar süren ara döneme <b>berzah âlemi</b> denir. Ehl-i Sünnet inancına göre kabir hayatı haktır:</p>
                 <ul>
-                    <li><b>Kabir Suali:</b> Münker ve Nekir melekleri kabirde merkeze gelerek "Rabbin kim, dinin ne, peygamberin kim?" sorularını sorarlar. İmanlılar bu soruları selametle yanıtlar.</li>
-                    <li><b>Kabir Azabı / Nimeti:</b> Amellere göre kabir ya cennet bahçelerinden bir bahçe ya da cehennem çukurlarından bir çukur olur.</li>
+                    <li><b>Kabir suali:</b> Münker ve Nekir adlı melekler kabirde “Rabbin kim, dinin ne, peygamberin kim?” sorularını sorar. İnanan kişi bu soruları selametle cevaplar.</li>
+                    <li><b>Kabir nimeti / azabı:</b> Hadis-i şerifte kabrin, ya cennet bahçelerinden bir bahçe ya da cehennem çukurlarından bir çukur olduğu bildirilir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: İhyâu Ulûmi'd-Din</div>
+                <div class="ref-box">Kaynak: Akaid kitapları; Tirmizî, Kıyâmet</div>
             </div></div>
         </div>
 
         <!-- 7 -->
-        <div class="topic-card" data-category="itikat" data-keywords="7 meleklerin ozellikleri nurdan yaratilma">
+        <div class="topic-card" data-category="itikat" data-keywords="7 meleklerin yaratilisi ve gorevleri melekler cebrail mikail israfil azrail nur">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">İtikat & İman</span><span class="topic-title">7. Meleklerin Yaratılışı ve Görevleri</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">7. Meleklerin Yaratılışı ve Görevleri</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Melekler nurdan yaratılmış, erkeklik ve dişilikleri olmayan, yemeyen, içmeyen, yorulmayan ve iradeleri bulunmadığı için daima Allah'a itaat eden latif varlıklardır.</p>
+                <p>Melekler nurdan yaratılmış, erkeklik ve dişilikle nitelenmeyen, yemeyen, içmeyen, yorulmayan, Allah'a asla isyan etmeyip kendilerine emredileni yapan latif varlıklardır.</p>
                 <ul>
-                    <li><b>Büyük Melekler:</b> Cebrail (vahy ile görevli), Mikail (tabiat olayları), İsrafil (sûr'a üflemekle görevli), Azrail (can almakla görevli ölüm meleği).</li>
+                    <li><b>Cebrail:</b> Vahiy getirmekle görevli.</li>
+                    <li><b>Mikail:</b> Yağmur ve rızık gibi tabiat olaylarıyla görevli.</li>
+                    <li><b>İsrafil:</b> Sûra üfürmekle görevli.</li>
+                    <li><b>Azrail:</b> Ölüm meleği; canları almakla görevli.</li>
                 </ul>
                 <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 8 -->
-        <div class="topic-card" data-category="itikat" data-keywords="8 ilahi kitaplar tahrif edilmemis kuran">
+        <div class="topic-card" data-category="itikat" data-keywords="8 ilahi kitaplar ve kur'an-i kerim'in ustunlugu ilahi kitaplar tevrat zebur incil kuran tahrif">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">İtikat & İman</span><span class="topic-title">8. İlahi Kitaplar ve Kur'an-ı Kerim'in Üstünlüğü</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">8. İlahi Kitaplar ve Kur'an-ı Kerim'in Üstünlüğü</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Allah insanlara rehber olması için suhuflar ve 4 büyük kitap göndermiştir:</p>
+                <p>Allah, insanlara rehber olmak üzere peygamberlerine suhuf ve kitaplar indirmiştir.</p>
                 <ul>
-                    <li>Tevrat (Hz. Musa'ya), Zebur (Hz. Davud'a), İncil (Hz. İsa'ya) gönderilmiş ancak zamanla tahrif edilmiştir (özgün metinleri bozulmuştur).</li>
-                    <li><b>Kur'an-ı Kerim:</b> Hz. Muhammed'e (s.a.v.) indirilen son ilahi kitaptır. Allah'ın koruması altındadır ve kıyamete kadar tek bir harfi dahi değişmeden kalacaktır.</li>
+                    <li>Tevrat Hz. Musa'ya, Zebur Hz. Davud'a, İncil Hz. İsa'ya, Kur'an-ı Kerim Hz. Muhammed'e (s.a.v.) indirilmiştir.</li>
+                    <li>Müslümanlar, önceki kitapların Allah'tan indirilen asıl hâllerine inanır; ancak günümüzdeki nüshaların asıl hâlini koruyamadığını (tahrife uğradığını) kabul eder.</li>
+                    <li>Kur'an-ı Kerim son ilahi kitaptır ve Allah'ın koruması altındadır.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Kelam Esasları</div>
+                <div class="ref-box">Kaynak: Hicr Suresi, 9; Kelam esasları</div>
             </div></div>
         </div>
 
         <!-- 9 -->
-        <div class="topic-card" data-category="itikat" data-keywords="9 bidat ve hurafeler dini konularda sonradan cıkanlar">
+        <div class="topic-card" data-category="itikat" data-keywords="9 bid'at ve hurafelerin dindeki yeri bidat hurafe nazar boncugu">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">İtikat & İman</span><span class="topic-title">9. Bid'at ve Hurafelerin Dinimizdeki Yeri</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">9. Bid'at ve Hurafelerin Dindeki Yeri</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Hz. Peygamber döneminden sonra dine sonradan sokulan ibadet veya inanç şekillerine bid'at denir.</p>
+                <p>Dinde ibadet ve inanç olarak sonradan ortaya çıkarılan, aslı Kur'an ve sünnette bulunmayan şeylere bid'at denir.</p>
                 <ul>
-                    <li>Hadis-i şerifte buyrulmuştur ki: *"Her bid'at sapkınlıktır (dalalet), her sapkınlık ateşkredir."*</li>
-                    <li>Hurafe ise dini temeli olmayan batıl inançlardır (örneğin nazar boncuğundan medet ummak, kurşun döktürmek, türbelerden bez bağlayıp dilek dilemek). Bunlar inanca zarar verir.</li>
+                    <li>Hadis-i şerifte “Her bid'at dalâlettir (sapkınlıktır), her dalâlet ateştedir” buyrulmuştur.</li>
+                    <li>Âlimler bu hadisteki bid'ati, dinî bir esas gibi sonradan ihdas edilen ibadet ve inançlar olarak anlamıştır; dünya işlerindeki yenilikler bu kapsama girmez.</li>
+                    <li>Hurafe, dinî dayanağı olmayan boş ve batıl inançlardır (ör. nazar boncuğuna güvenmek, kurşun döktürmek, türbelere bez bağlayıp dilek dilemek).</li>
                 </ul>
-                <div class="ref-box">Kaynak: Sünen-i Ebu Davud</div>
+                <div class="ref-box">Kaynak: Ebû Dâvûd, Sünnet; Nesâî, İydeyn</div>
             </div></div>
         </div>
 
         <!-- 10 -->
-        <div class="topic-card" data-category="itikat" data-keywords="10 tevbe istigfar sartlari samimiyet">
+        <div class="topic-card" data-category="itikat" data-keywords="10 gercek tovbe ve istigfarin sartlari tovbe istigfar nasuh">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">İtikat & İman</span><span class="topic-title">10. Hakiki Tövbe ve İstigfarın Şartları</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">10. Gerçek Tövbe ve İstiğfarın Şartları</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Günahlardan arınmak için yapılan samimi tövbenin (tövbe-i nasuh) kabulü için şu şartlar yerine getirilmelidir:</p>
+                <p>Günahlardan arınmak için yapılan samimi tövbenin (tövbe-i nasûh) şartları şunlardır:</p>
                 <ul>
-                    <li>Günahı hemen o an terk etmek, bırakmak.</li>
-                    <li>İşlenen günahtan dolayı kalben büyük bir pişmanlık duymak.</li>
-                    <li>O günahı bir daha kesinlikle işlememeye azmetmek, karar vermek.</li>
-                    <li>Eğer günah bir kul hakkını ilgilendiriyorsa, hak sahibiyle helalleşmek veya gasp edilen hakkı iade etmek.</li>
+                    <li>Günahı hemen bırakmak.</li>
+                    <li>İşlenen günahtan dolayı kalpten pişmanlık duymak.</li>
+                    <li>Aynı günahı bir daha işlememeye kesin karar vermek.</li>
+                    <li>Günah bir kul hakkıyla ilgiliyse, hak sahibiyle helalleşmek veya hakkı iade etmek.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Gazali, İhyâu Ulûmi'd-Din</div>
+                <p>Tövbe kapısı, can boğaza gelip ölüm hâli başlayana kadar açıktır.</p>
+                <div class="ref-box">Kaynak: Gazâlî, İhyâü Ulûmi'd-Dîn; Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 11 -->
-        <div class="topic-card" data-category="taharet" data-keywords="11 abdestin farzlari alinisi">
+        <div class="topic-card" data-category="itikat" data-keywords="11 ehl-i sunnet ve'l-cemaat yolu nedir? ehli sunnet cemaat maturidi esari">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Taharet & Abdest</span><span class="topic-title">11. Abdestin Farzları ve Alınış Usulü</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">11. Ehl-i Sünnet ve'l-Cemaat Yolu Nedir?</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Namazın anahtarı olan abdestin Kur'an-ı Kerim'de (Maide Suresi, 6) bildirilen 4 temel farzı vardır:</p>
+                <p>Peygamberimizin ve ashabının yolundan giden, Kur'an ve sahih sünneti esas alan itikadî ekoldür.</p>
                 <ul>
-                    <li>1. Yüzü bir kez yıkamak (kulak memelerinden çene altına ve saç bitimine kadar).</li>
-                    <li>2. Elleri dirseklerle beraber bir kez yıkamak.</li>
-                    <li>3. Başın dörtte birini mesh etmek (ıslak el ile sıvazlamak).</li>
-                    <li>4. Ayakları topuklarla beraber bir kez yıkamak.</li>
+                    <li>İtikatta Ebû Mansûr el-Mâtürîdî ve Ebü'l-Hasen el-Eş'arî çizgisi, amelde dört fıkıh mezhebi temsil edilir.</li>
+                    <li>Aşırılıklardan uzak, dengeli bir yolu (vasat ümmet) ifade eder.</li>
+                </ul>
+                <div class="ref-box">Kaynak: Akaid kitapları</div>
+            </div></div>
+        </div>
+
+        <!-- 12 -->
+        <div class="topic-card" data-category="taharet" data-keywords="12 abdestin farzlari ve alinis usulu abdest farz alinis usulu">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">12. Abdestin Farzları ve Alınış Usulü</span></div><span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body"><div class="topic-content-inner">
+                <p>Namazın anahtarı olan abdestin, Kur'an-ı Kerim'de (Mâide Suresi, 6) bildirilen ve Hanefî mezhebine göre 4 farzı vardır:</p>
+                <ul>
+                    <li>Yüzü yıkamak (alın saç bitiminden çene altına, iki kulak yumuşağı arasına kadar).</li>
+                    <li>Elleri ve kolları dirseklerle birlikte yıkamak.</li>
+                    <li>Başın dörtte birini mesh etmek (ıslak elle sıvazlamak).</li>
+                    <li>Ayakları topuk kemikleriyle birlikte yıkamak.</li>
+                </ul>
+                <p>Diğer mezheplerde niyet ve tertip (sıra) gibi unsurlar da farz sayılır; kişi uyduğu mezhebe göre hareket eder.</p>
+                <div class="ref-box">Kaynak: Mâide Suresi, 6; Diyanet İlmihali</div>
+            </div></div>
+        </div>
+
+        <!-- 13 -->
+        <div class="topic-card" data-category="taharet" data-keywords="13 abdesti bozan durumlar nelerdir? abdesti bozan haller kan irin kusmak uyku">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">13. Abdesti Bozan Durumlar Nelerdir?</span></div><span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body"><div class="topic-content-inner">
+                <p>Hanefî mezhebine göre alınan abdesti bozan başlıca durumlar şunlardır:</p>
+                <ul>
+                    <li>Ön veya arka yoldan idrar, dışkı veya gaz çıkması.</li>
+                    <li>Vücuttan kan, irin veya sarı su çıkıp yara ağzından akarak yıkanması gereken bir yere ulaşması.</li>
+                    <li>Ağız dolusu kusmak.</li>
+                    <li>Bayılmak, sarhoş olmak veya aklî dengeyi kaybetmek.</li>
+                    <li>Yan yatarak ya da kalkınca düşecek şekilde bir şeye yaslanarak uyumak (oturarak veya namaz duruşunda uyuklamak abdesti bozmaz).</li>
+                    <li>Rükû ve secdeli bir namazda sesli kahkaha atmak.</li>
+                </ul>
+                <div class="ref-box">Kaynak: Diyanet İlmihali; Büyük İslam İlmihali</div>
+            </div></div>
+        </div>
+
+        <!-- 14 -->
+        <div class="topic-card" data-category="taharet" data-keywords="14 gusul (boy abdesti) nasil alinir? gusul boy abdesti cunup mazmaza istinsak">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">14. Gusül (Boy Abdesti) Nasıl Alınır?</span></div><span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body"><div class="topic-content-inner">
+                <p>Cünüplük, hayız ve nifas hâllerinden temizlenmek için gusül abdesti alınır. Hanefî mezhebine göre guslün farzı üçtür:</p>
+                <ul>
+                    <li>Ağıza su alıp çalkalamak (mazmaza).</li>
+                    <li>Buruna su çekip yıkamak (istinşak).</li>
+                    <li>Bütün bedeni, kuru yer kalmayacak şekilde yıkamak.</li>
+                </ul>
+                <div class="ref-box">Kaynak: Mâide Suresi, 6; Diyanet İlmihali</div>
+            </div></div>
+        </div>
+
+        <!-- 15 -->
+        <div class="topic-card" data-category="taharet" data-keywords="15 teyemmum nasil yapilir? teyemmum toprak su yok">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">15. Teyemmüm Nasıl Yapılır?</span></div><span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body"><div class="topic-content-inner">
+                <p>Su bulunmadığında ya da hastalık, aşırı soğuk gibi sebeplerle suyu kullanmak zarar verecekse, yeryüzü cinsinden temiz bir şeyle (toprak, kum, taş gibi) teyemmüm edilir.</p>
+                <ul>
+                    <li>Niyet edilir: “Allah rızası için teyemmüme niyet ettim.”</li>
+                    <li>Eller temiz toprağa vurulup silkelenir ve yüz mesh edilir.</li>
+                    <li>Eller ikinci kez toprağa vurulur; önce sağ, sonra sol kol dirseklerle birlikte mesh edilir.</li>
+                </ul>
+                <p>Teyemmüm abdest veya gusül yerine geçer; su bulununca ya da özür ortadan kalkınca bozulur.</p>
+                <div class="ref-box">Kaynak: Mâide Suresi, 6; Diyanet İlmihali</div>
+            </div></div>
+        </div>
+
+        <!-- 16 -->
+        <div class="topic-card" data-category="taharet" data-keywords="16 mestler ve corap uzerine mesh mesh corap mest sure">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">16. Mestler ve Çorap Üzerine Mesh</span></div><span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body"><div class="topic-content-inner">
+                <p>Hanefî mezhebine göre mestler (ayağı topuklarla birlikte örten deri vb. ayakkabılar) ile bu hükümde olan kalın çoraplar üzerine mesh edilebilir. Şartları şunlardır:</p>
+                <ul>
+                    <li>Abdestli iken (ayaklar yıkandıktan sonra) giyilmiş olması.</li>
+                    <li>Ayağı topuklarla birlikte örtmesi.</li>
+                    <li>Bağsız olarak ayakta durabilecek kadar sağlam ve su geçirmeyecek yapıda olması.</li>
+                    <li>Ayağın üç küçük parmağı genişliğinden fazla yırtığı olmaması.</li>
+                </ul>
+                <p>Mesh süresi mukim için 1 gün 1 gece, yolcu için 3 gün 3 gecedir. Mesh, ıslak elin üç parmağıyla ayağın üst kısmına yapılır.</p>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
+            </div></div>
+        </div>
+
+        <!-- 17 -->
+        <div class="topic-card" data-category="taharet" data-keywords="17 istibra ve istinca (tuvalet temizligi) istibra istinca tuvalet temizlik">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">17. İstibra ve İstinca (Tuvalet Temizliği)</span></div><span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body"><div class="topic-content-inner">
+                <p>Tuvalet adabında iki kavram esastır:</p>
+                <ul>
+                    <li><b>İstibra:</b> Özellikle erkeklerin, idrar yolunda kalıntı kalmadığına kanaat getirinceye kadar beklemesi veya gerekli tedbiri almasıdır. Aksi hâlde sonradan gelen idrar abdesti bozar.</li>
+                    <li><b>İstinca:</b> Küçük veya büyük abdestten sonra çıkış yerinin su (su yoksa temiz kâğıt, taş gibi şeyler) ile temizlenmesidir.</li>
+                </ul>
+                <p>Hadis-i şerifte “Temizlik imanın yarısıdır” buyrulmuştur (Müslim, Tahâret).</p>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
+            </div></div>
+        </div>
+
+        <!-- 18 -->
+        <div class="topic-card" data-category="taharet" data-keywords="18 hayiz (adet) ve nifas (lohusalik) hali hayiz nifas adet lohusa">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">18. Hayız (Adet) ve Nifas (Lohusalık) Hâli</span></div><span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body"><div class="topic-content-inner">
+                <p>Kadınlara özgü fıkhî hâllerdir (Hanefî mezhebine göre):</p>
+                <ul>
+                    <li><b>Hayız:</b> Düzenli adet kanamasıdır; en az 3, en çok 10 gündür.</li>
+                    <li><b>Nifas:</b> Doğum sonrası gelen kanamadır; en çok 40 gündür.</li>
+                    <li>Bu günlerde namaz kılınmaz ve oruç tutulmaz. Namazlar kaza edilmez; tutulamayan oruçlar sonra kaza edilir.</li>
+                    <li>Kanama bitince gusül abdesti alınarak ibadete devam edilir.</li>
+                </ul>
+                <div class="ref-box">Kaynak: Diyanet İlmihali; Kadın İlmihali</div>
+            </div></div>
+        </div>
+
+        <!-- 19 -->
+        <div class="topic-card" data-category="taharet" data-keywords="19 necasetten taharet (beden, elbise ve yer temizligi) necaset taharet temizlik">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">19. Necasetten Taharet (Beden, Elbise ve Yer Temizliği)</span></div><span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body"><div class="topic-content-inner">
+                <p>Namazın geçerli olması için bedenin, elbisenin ve namaz kılınan yerin necasetten temiz olması şarttır.</p>
+                <ul>
+                    <li><b>Ağır necaset:</b> Akıcı kan, idrar, dışkı, şarap, domuz eti gibi şeylerdir. Hanefî mezhebine göre bir dirhem miktarını (yaklaşık avuç içi genişliği) aşarsa namaza engel olur ve yıkanarak giderilmesi gerekir.</li>
+                    <li><b>Hafif necaset:</b> Bu türde, giysi veya uzvun dörtte birinden az olması hâlinde namaza engel olmaz.</li>
                 </ul>
                 <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
-        <!-- 12 -->
-        <div class="topic-card" data-category="taharet" data-keywords="12 abdesti bozan haller kan irin">
-            <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Taharet & Abdest</span><span class="topic-title">12. Abdesti Bozan Durumlar Nelerdir?</span></div><span class="topic-arrow">▼</span>
-            </div>
-            <div class="topic-body"><div class="topic-content-inner">
-                <p>Alınan abdesti geçersiz kılan fıkhi durumlar şunlardır:</p>
-                <ul>
-                    <li>Ön ve arkadan idrar, dışkı veya yellenmek suretiyle gaz çıkması.</li>
-                    <li>Vücudun herhangi bir yerinden çıkan kan, irin veya sarı suyun yara dışına çıkarak akması (Hanefi'de akar).</li>
-                    <li>Ağız dolusu kusmak.</li>
-                    <li>Bayılmak, sarhoş olmak, deli olmak veya uyumak (oturarak yapılan hafif uyuklamalar bozulmaz).</li>
-                    <li>Namaz kılarken sesli kahkahayla gülmek.</li>
-                </ul>
-                <div class="ref-box">Kaynak: Büyük İslam İlmihali</div>
-            </div></div>
-        </div>
-
-        <!-- 13 -->
-        <div class="topic-card" data-category="taharet" data-keywords="13 gusul boy abdesti farzlari">
-            <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Taharet & Abdest</span><span class="topic-title">13. Gusül (Boy) Abdestinin Farzları</span></div><span class="topic-arrow">▼</span>
-            </div>
-            <div class="topic-body"><div class="topic-content-inner">
-                <p>Cünüplük, hayız ve nifas hallerinden kurtulmak için yapılan guslün farzı üç tanedir:</p>
-                <ul>
-                    <li>1. Ağza bolca su alıp boğaza kadar çalkalamak (mazmaza).</li>
-                    <li>2. Buruna bolca su çekip genze kadar ulaştırmak (istinşak).</li>
-                    <li>3. Vücutta iğne ucu kadar bile kuru yer kalmayacak şekilde bütün bedeni yıkamak.</li>
-                </ul>
-                <div class="ref-box">Kaynak: Fıkıh Ansiklopedisi</div>
-            </div></div>
-        </div>
-
-        <!-- 14 -->
-        <div class="topic-card" data-category="taharet" data-keywords="14 teyemmüm toprak abdesti sartlari">
-            <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Taharet & Abdest</span><span class="topic-title">14. Teyemmüm Abdesti Nasıl Alınır?</span></div><span class="topic-arrow">▼</span>
-            </div>
-            <div class="topic-body"><div class="topic-content-inner">
-                <p>Su bulunmadığı veya suyu kullanma imkanı olmadığı (hastalık, aşırı soğuk vb.) durumlarda temiz toprak cinsine teyemmüm edilir:</p>
-                <ul>
-                    <li>Niyet edilir ("Niyet کردم Allah rızası için teyemmüme").</li>
-                    <li>Temiz toprağa eller vurulup silkelenerek yüz mesh edilir.</li>
-                    <li>İkinci kez toprağa eller vurulup önce sağ kol, sonra sol kol dirseklerle beraber mesh edilir.</li>
-                </ul>
-                <div class="ref-box">Kaynak: Temel Dini Bilgiler</div>
-            </div></div>
-        </div>
-
-        <!-- 15 -->
-        <div class="topic-card" data-category="taharet" data-keywords="15 mesh çorap üzerine mesh sartlari">
-            <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Taharet & Abdest</span><span class="topic-title">15. Çorap Üzerine Mesh Etmenin Şartları</span></div><span class="topic-arrow">▼</span>
-            </div>
-            <div class="topic-body"><div class="topic-content-inner">
-                <p>Deri meşinler yerine giyilen çoraplar üzerine mesh yapılabilmesi için şu şartlar aranır (Hanefi mezhebine göre deri tabanlı veya kalın keçemsi çoraplar):</p>
-                <ul>
-                    <li>Abdestli iken giyilmiş olması.</li>
-                    <li>Ayakta bağsız durabilecek kadar kalın ve suyu hemen alta geçirmeyecek yapıda olması.</li>
-                    <li>Yırtık veya delik olmaması.</li>
-                </ul>
-                <div class="ref-box">Kaynak: Fetvalar</div>
-            </div></div>
-        </div>
-
-        <!-- 16 -->
-        <div class="topic-card" data-category="taharet" data-keywords="16 istibra istinca tuvalet temizligi">
-            <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Taharet & Abdest</span><span class="topic-title">16. İstibra ve İstinca (Tuvalet Temizliği) Kuralları</span></div><span class="topic-arrow">▼</span>
-            </div>
-            <div class="topic-body"><div class="topic-content-inner">
-                <p>İslam temizliğe büyük önem verir. Tuvalet adabında şu iki kavram esastır:</p>
-                <ul>
-                    <li><b>İstibra:</b> Erkeklerin idrar yolunda kalan kalıntıların tamamen akıp bitmesini beklemesi ve temizlenmesidir. Aksi takdirde abdest bozulur.</li>
-                    <li><b>İstinca:</b> Büyük veya küçük abdest sonrasında çıkış yerinin su veya tuvalet kağıtlarıyla arındırılarak temizlenmesidir.</li>
-                </ul>
-                <div class="ref-box">Kaynak: İlmihal</div>
-            </div></div>
-        </div>
-
-        <!-- 17 -->
-        <div class="topic-card" data-category="taharet" data-keywords="17 hayız nifas adet dönemi gusül">
-            <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Taharet & Abdest</span><span class="topic-title">17. Hayız (Adet) ve Nifas (Lohusalık) Hali</span></div><span class="topic-arrow">▼</span>
-            </div>
-            <div class="topic-body"><div class="topic-content-inner">
-                <p>Kadınların fıkhi özel durumlarıdır:</p>
-                <ul>
-                    <li><b>Hayız:</b> Kadınların düzenli gördüğü adet kanamasıdır. En az 3, en çok 10 gündür. Bu sürede namaz kılınmaz, oruç tutulmaz. Oruçlar daha sonra kaza edilir, namazlar kaza edilmez.</li>
-                    <li><b>Nifas:</b> Doğum sonrasında gelen lohusalık kanamasıdır. En uzun süresi 40 gündür. Bitince gusledilir.</li>
-                </ul>
-                <div class="ref-box">Kaynak: Kadın İlmihali</div>
-            </div></div>
-        </div>
-
-        <!-- 18 -->
-        <div class="topic-card" data-category="taharet" data-keywords="18 necasetten taharet temizlik">
-            <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Taharet & Abdest</span><span class="topic-title">18. Necasetten Taharet (Beden ve Elbise Temizliği)</span></div><span class="topic-arrow">▼</span>
-            </div>
-            <div class="topic-body"><div class="topic-content-inner">
-                <p>Namazın geçerli olabilmesi için bedenin, namaz kılınacak yerin ve giysilerin pisliklerden (gözle görülen veya görünmeyen necaset) arındırılması şarttır.</p>
-                <ul>
-                    <li>İdrar, kan, alkol, domuz eti ve dışkı ağır necasetlerdendir. Belli bir miktarı aşarsa namaza mani olur, yıkanarak giderilmesi gerekir.</li>
-                </ul>
-                <div class="ref-box">Kaynak: Fıkıh</div>
-            </div></div>
-        </div>
-
-        <!-- 19 -->
-        <div class="topic-card" data-category="taharet" data-keywords="19 misvak kullanmanin fazileti sünnet">
-            <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Taharet & Abdest</span><span class="topic-title">19. Misvak Kullanmanın Sünneti ve Faydaları</span></div><span class="topic-arrow">▼</span>
-            </div>
-            <div class="topic-body"><div class="topic-content-inner">
-                <p>Erak ağacından yapılan misvakı kullanmak Peygamberimizin ısrarla tavsiye ettiği sünnet-i müekkededir.</p>
-                <ul>
-                    <li>Ağız kokusunu giderir, diş etlerini güçlendirir ve en önemlisi **"Misvak, ağzın temizliği, Rabbin de rızasıdır"** hadisi gereğince ahirette şefadete ve ilahi rızaya vesile olur.</li>
-                </ul>
-                <div class="ref-box">Kaynak: Buhari, Savm</div>
-            </div></div>
-        </div>
-
         <!-- 20 -->
-        <div class="topic-card" data-category="taharet" data-keywords="20 su cesitleri mutlak su">
+        <div class="topic-card" data-category="taharet" data-keywords="20 misvak kullanmanin sunneti misvak sunnet agiz temizligi">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Taharet & Abdest</span><span class="topic-title">20. Temiz Su Çeşitleri ve Hükümleri</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">20. Misvak Kullanmanın Sünneti</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>İbadetlerde kullanılacak sular **Mutlak Su** niteliğinde olmalıdır:</p>
+                <p>Misvak (arak ağacı dalı veya diş temizleme araçları) kullanmak, Peygamberimizin sık sık yaptığı ve tavsiye ettiği bir sünnettir. Abdest alırken misvak kullanmak sünnet-i müekkededir.</p>
                 <ul>
-                    <li>Yağmur, kar, deniz, nehir, kuyu ve kaynak suları kendi öz tabiatını koruduğu sürece temizdir ve hem içilir hem de abdest/gusül alınır.</li>
-                    <li>İçine necis (pis) karışıp renk, tat veya kokusu değişen sular ise müstehlek (pis) olup temizlikte kullanılmaz.</li>
+                    <li>Ağzı temizler ve kokusunu giderir.</li>
+                    <li>Hadis-i şerifte misvakın ağız temizliği ve Rabbin rızasına vesile olduğu bildirilmiştir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: İlmihal</div>
+                <div class="ref-box">Kaynak: Buhârî, Savm; Nesâî, Tahâret</div>
             </div></div>
         </div>
 
         <!-- 21 -->
-        <div class="topic-card" data-category="namaz" data-keywords="21 bes vakit namaz rekatlari">
+        <div class="topic-card" data-category="taharet" data-keywords="21 temiz su cesitleri ve hukumleri su cesitleri mutlak su abdest">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">21. Beş Vakit Namazın Rekat Dağılımı</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">21. Temiz Su Çeşitleri ve Hükümleri</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Müslümanlara gün içerisinde farz kılınan vakit namazları ve rekatları şunlardır:</p>
+                <p>Abdest ve gusül için kullanılacak su, temiz ve temizleyici olan mutlak su olmalıdır:</p>
                 <ul>
-                    <li><b>Sabah Namazı:</b> 2 rekat sünnet, 2 rekat farz (Toplam 4).</li>
-                    <li><b>Öğle Namazı:</b> 4 rekat ilk sünnet, 4 rekat farz, 2 rekat son sünnet (Toplam 10).</li>
-                    <li><b>İkindi Namazı:</b> 4 rekat sünnet, 4 rekat farz (Toplam 8).</li>
-                    <li><b>Akşam Namazı:</b> 3 rekat farz, 2 rekat sünnet (Toplam 5).</li>
-                    <li><b>Yatsı Namazı:</b> 4 rekat ilk sünnet, 4 rekat farz, 2 rekat son sünnet, 3 rekat vitir vacip (Toplam 13).</li>
+                    <li>Yağmur, kar, dolu, deniz, nehir, göl, kuyu ve pınar suları kendi özelliğini koruduğu sürece temizdir; bunlarla abdest ve gusül alınır.</li>
+                    <li>Çay, meyve suyu, gül suyu gibi başka bir şeyin adıyla anılan sıvılarla abdest alınmaz.</li>
+                    <li>Suya necaset karışıp rengi, tadı veya kokusu değişirse necis olur ve temizlikte kullanılmaz.</li>
                 </ul>
                 <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 22 -->
-        <div class="topic-card" data-category="namaz" data-keywords="22 namazin sartlari rükünleri 12 farz">
+        <div class="topic-card" data-category="namaz" data-keywords="22 bes vakit namazin rekat dagilimi bes vakit namaz rekat">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">22. Namazın Dışındaki ve İçindeki Farzlar (12 Farz)</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">22. Beş Vakit Namazın Rekât Dağılımı</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Namazın sıhhati için toplam 12 farz (şart ve rükün) eksiksiz olmalıdır:</p>
+                <p>Günlük namazların rekât sayıları şöyledir (Hanefî mezhebine göre):</p>
                 <ul>
-                    <li><b>Dışındakiler (Şartları - 6):</b> Hadesten taharet, necasetten taharet, setr-i avret, istikbal-i kıble, vakit, niyet.</li>
-                    <li><b>İçindekiler (Rükünleri - 6):</b> İftitah tekbiri, kıyam, kıraat, rüku, secde, kâdî-i ahire (son oturuş).</li>
+                    <li><b>Sabah:</b> 2 rekât sünnet, 2 rekât farz (toplam 4).</li>
+                    <li><b>Öğle:</b> 4 rekât ilk sünnet, 4 rekât farz, 2 rekât son sünnet (toplam 10).</li>
+                    <li><b>İkindi:</b> 4 rekât sünnet, 4 rekât farz (toplam 8).</li>
+                    <li><b>Akşam:</b> 3 rekât farz, 2 rekât sünnet (toplam 5).</li>
+                    <li><b>Yatsı:</b> 4 rekât ilk sünnet, 4 rekât farz, 2 rekât son sünnet, 3 rekât vitir vâcip (toplam 13).</li>
                 </ul>
-                <div class="ref-box">Kaynak: Büyük İslam İlmihali</div>
+                <p>İkindi ve yatsının ilk 4 rekât sünneti gayr-i müekkededir; diğer sünnetler müekkededir.</p>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 23 -->
-        <div class="topic-card" data-category="namaz" data-keywords="23 namazi bozan haller gülmek konusmak">
+        <div class="topic-card" data-category="namaz" data-keywords="23 namazin 12 farzi (sartlari ve rukunleri) namaz farzlari sartlari rukunleri 12 farz">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">23. Namazı Bozan Haller Nelerdir?</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">23. Namazın 12 Farzı (Şartları ve Rükünleri)</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Namaz kılarken şu durumların gerçekleşmesi namazı tamamen batıl eder:</p>
+                <p>Namazın geçerli olması için toplam 12 farz yerine getirilmelidir:</p>
                 <ul>
-                    <li>Konuşmak, harf bile olsa kelime söylemek, selam almak veya vermek.</li>
-                    <li>Bir şey yemek veya içmek.</li>
-                    <li>Sesli bir şekilde kahkahayla gülmek (yanındakilerin duyacağı kadar).</li>
-                    <li>Kıbleden göğsü çevirmek.</li>
-                    <li>Abdestin bozulması.</li>
-                    <li>Gözle görülür fazlalık hareketler (tavaaf eder gibi hareket etmek).</li>
+                    <li><b>Namazın dışındaki farzlar (şartlar, 6):</b> Hadesten taharet, necasetten taharet, setr-i avret, istikbâl-i kıble, vakit, niyet.</li>
+                    <li><b>Namazın içindeki farzlar (rükünler, 6):</b> İftitah tekbiri, kıyam, kıraat, rükû, secde, ka'de-i ahîre (son oturuş).</li>
                 </ul>
-                <div class="ref-box">Kaynak: Fıkıh</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali; Büyük İslam İlmihali</div>
             </div></div>
         </div>
 
         <!-- 24 -->
-        <div class="topic-card" data-category="namaz" data-keywords="24 sehiv secdesi yanlis namaz">
+        <div class="topic-card" data-category="namaz" data-keywords="24 namazi bozan durumlar nelerdir? namazi bozan haller konusmak gulmek">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">24. Sehiv Secdesi Ne Zaman ve Nasıl Yapılır?</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">24. Namazı Bozan Durumlar Nelerdir?</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Namazın vaciplerinden biri unutularak terk edildiğinde veya geciktirildiğinde namazın sonunda sehiv secdesi (yanılma secdesi) yapılır:</p>
+                <p>Namazda şu durumlar namazı bozar (Hanefî mezhebine göre):</p>
                 <ul>
-                    <li><b>Nasıl Yapılır:</b> Son oturuşta sadece Tahiyyat okunur, sağ tarafa selam verilir ve ardından iki secde yapılıp oturulur, tekrar Tahiyyat, Salli-Barik ve dualar okunarak iki tarafa selam verilir.</li>
+                    <li>Bilerek konuşmak; Hanefî'de unutarak veya yanılarak konuşmak da namazı bozar. Selam alıp vermek de buna dahildir.</li>
+                    <li>Yemek veya içmek.</li>
+                    <li>Sesli kahkaha atmak.</li>
+                    <li>Göğsünü kıbleden çevirmek.</li>
+                    <li>Abdestin bozulması.</li>
+                    <li>Dışarıdan bakan birinin namazda olmadığını sanacağı kadar çok hareket yapmak (amel-i kesîr).</li>
                 </ul>
-                <div class="ref-box">Kaynak: İlmihal</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali; Büyük İslam İlmihali</div>
             </div></div>
         </div>
 
         <!-- 25 -->
-        <div class="topic-card" data-category="namaz" data-keywords="25 cuma namazi sartlari farz">
+        <div class="topic-card" data-category="namaz" data-keywords="25 sehiv secdesi ne zaman ve nasil yapilir? sehiv secdesi yanilma">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">25. Cuma Namazının Farz Olma Şartları</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">25. Sehiv Secdesi Ne Zaman ve Nasıl Yapılır?</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Cuma namazı, İslam'ın şiarından olup özgür, sağlıklı, mukim, erkek ve mazereti olmayan müslümanlara farz-ı ayındır.</p>
+                <p>Namazın vâciplerinden biri unutularak terk edilir veya geciktirilirse namazın sonunda sehiv (yanılma) secdesi yapılır.</p>
                 <ul>
-                    <li>Vakti, öğle namazının vaktidir. Hutbe dinlenmesi farzdır, hatip hutbe okurken cemaatin konuşması tahrehen mekruhtur.</li>
+                    <li>Son oturuşta yalnızca Tahiyyat okunur ve sağa selam verilir.</li>
+                    <li>Ardından iki secde yapılıp oturulur; Tahiyyat, Salli-Barik ve dualar okunur.</li>
+                    <li>Sonra iki tarafa selam verilir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Diyanet</div>
+                <p>Farzlardan biri unutulursa namaz bozulur; sehiv secdesi yetmez.</p>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 26 -->
-        <div class="topic-card" data-category="namaz" data-keywords="26 cenaze namazi tekbirler">
+        <div class="topic-card" data-category="namaz" data-keywords="26 cuma namazinin sartlari cuma namazi hutbe sartlari">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">26. Cenaze Namazı Nasıl Kılınır?</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">26. Cuma Namazının Şartları</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Rüku ve secdesi olmayan, ayakta kılınan bir dua namazıdır (farz-ı kifaye):</p>
+                <p>Cuma namazı, hür, erkek, mukim (yolcu olmayan), sağlıklı ve akıllı Müslümanlara farz-ı ayındır.</p>
                 <ul>
-                    <li>1. Tekbir alınır, Sübhaneke okunur.</li>
-                    <li>2. Tekbir alınır, Salli-Barik duaları okunur.</li>
-                    <li>3. Tekbir alınır, cenaze duası okunur.</li>
-                    <li>4. Tekbir alınarak sağa ve sola selam verilir.</li>
+                    <li>Vakti, öğle namazının vaktidir.</li>
+                    <li>Cuma namazı 2 rekât farzdır; öncesinde 4 rekât ilk sünnet, sonrasında 4 rekât son sünnet ve 2 rekât sünnet kılınır.</li>
+                    <li>Hutbeyi dinlemek gerekir; hutbe sırasında konuşmak ve meşgul olmak yasaktır (tahrîmen mekruh).</li>
                 </ul>
-                <div class="ref-box">Kaynak: İlmihal</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 27 -->
-        <div class="topic-card" data-category="namaz" data-keywords="27 vitir namazi qunut dualari">
+        <div class="topic-card" data-category="namaz" data-keywords="27 cenaze namazi nasil kilinir? cenaze namazi tekbir">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">27. Vitir Namazı ve Kunut Duaları</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">27. Cenaze Namazı Nasıl Kılınır?</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Yatsı namazından sonra kılınan ve Hanefi mezhebinde vacip olan 3 rekatlık bir namazdır.</p>
+                <p>Rükû ve secdesi olmayan, ayakta kılınan bir dua namazıdır; farz-ı kifayedir.</p>
                 <ul>
-                    <li>Üçüncü rekatta Fatiha ve zamm-ı sure okunduktan sonra eller kulak hizasına kaldırılıp tekbir alınır ve Kunut duaları (Allahümme iyyake na'büdü...) okunarak rükuya varılır.</li>
+                    <li>1. Niyet edilip tekbir alınır, Sübhâneke okunur.</li>
+                    <li>2. İkinci tekbirle Salli-Barik duaları okunur.</li>
+                    <li>3. Üçüncü tekbirle cenaze duası okunur.</li>
+                    <li>4. Dördüncü tekbirle sağa ve sola selam verilir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Fıkıh</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 28 -->
-        <div class="topic-card" data-category="namaz" data-keywords="28 seferilik yolcu namazi kisaltma">
+        <div class="topic-card" data-category="namaz" data-keywords="28 vitir namazi ve kunut dualari vitir namazi kunut dualari">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">28. Seferilik (Yolculuk) ve Namazların Kısaltılması</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">28. Vitir Namazı ve Kunut Duaları</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Dinen yolcu sayılacak kadar (en az 90 km ve üstü) mesafeye giden kimseler seferi olur:</p>
+                <p>Yatsıdan sonra kılınan vitir namazı, Hanefî mezhebinde vâciptir ve üç rekâttır.</p>
                 <ul>
-                    <li>Dört rekatlı farz namazları (Öğle, İkindi, Yatsı) kısaltarak (iceten kasr ederek) **ikişer rekat** kılarlar. Sabah ve akşam namazları kısaltılmaz.</li>
+                    <li>İkinci rekâtta oturulup yalnızca Tahiyyat okunur ve kalkılır.</li>
+                    <li>Üçüncü rekâtta Fatiha ve zammı sûreden sonra eller kulak hizasına kaldırılarak tekbir alınır, eller bağlanır ve Kunut duaları (“Allahümme innâ neste'înüke…” ve “Allahümme iyyâke na'büdü…”) okunur.</li>
+                    <li>Ardından rükûya gidilip namaz tamamlanır.</li>
                 </ul>
                 <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 29 -->
-        <div class="topic-card" data-category="namaz" data-keywords="29 teravih namazi kac rekat sünnet">
+        <div class="topic-card" data-category="namaz" data-keywords="29 yolculuk (sefer) ve namazlarin kisaltilmasi sefer yolcu kasr namaz kisaltma">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">29. Teravih Namazının Hükmü ve Rekatları</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">29. Yolculuk (Sefer) ve Namazların Kısaltılması</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Ramazan ayında yatsı namazından sonra kılınan teravih namazı, hem kadınlar hem erkekler için sünnet-i müekkededir.</p>
+                <p>Dinen yolcu sayılmak için, yerleşim yerinden en az yaklaşık 90 km uzaklığa gitmek (ve 15 günden az kalmaya niyet etmek) gerekir.</p>
                 <ul>
-                    <li>Uygulamada standart olarak 20 rekat kılınır. İki rekette bir selam vermek faziletli kabul edilir.</li>
+                    <li>Yolcu, dört rekâtlı farz namazları (öğle, ikindi, yatsı) kasr ederek (kısaltarak) ikişer rekât kılar; Hanefî mezhebinde bu kısaltma zorunludur.</li>
+                    <li>Sabah ve akşam namazları kısaltılmaz.</li>
                 </ul>
-                <div class="ref-box">Kaynak: İlmihal</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 30 -->
-        <div class="topic-card" data-category="namaz" data-keywords="30 kaza namazlari borc namaz">
+        <div class="topic-card" data-category="namaz" data-keywords="30 teravih namazinin hukmu ve rekatlari teravih namazi rekat ramazan">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">30. Kaza Namazları Nasıl Kılınır ve Borç Ödeme</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">30. Teravih Namazının Hükmü ve Rekâtları</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Vaktinde kılınamayan farz namazlar kaza borcu olarak ödenmelidir:</p>
+                <p>Ramazan gecelerinde yatsıdan sonra kılınan teravih namazı, kadın ve erkek herkes için sünnet-i müekkededir; cemaatle kılınması sünnet-i kifayedir.</p>
                 <ul>
-                    <li>Sadece 5 vakit namazın farzları ile vitir namazı kaza edilir (sünnetler kaza edilmez). Kazaya kalan namaz ne kadarse fırsat buldukça kılınarak borçlar temizlenmelidir.</li>
+                    <li>Yaygın uygulama 20 rekâttır; ikişer rekâtta bir selam verilir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Büyük İslam İlmihali</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 31 -->
-        <div class="topic-card" data-category="oruc" data-keywords="31 orucu bozan seyler kaza kefaret">
+        <div class="topic-card" data-category="namaz" data-keywords="31 kaza namazlari nasil kilinir? kaza namazlari borc ode">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Oruç & Hac</span><span class="topic-title">31. Orucu Bozan, Kaza ve Kefaret Gerektiren Haller</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">31. Kaza Namazları Nasıl Kılınır?</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Orucu bozan durumlar ve hükümleri şunlardır:</p>
+                <p>Vaktinde kılınamayan farz namazlar ve vitir, kaza borcu olarak ödenmelidir.</p>
                 <ul>
-                    <li><b>Kefaret (61 Gün Oruç):</b> Bilerek, kasten yemek, içmek veya cinsel ilişkiye girmek.</li>
-                    <li><b>Kaza (1 Gün Oruç):</b> Unutarak yiyip içtikten sonra "nasıl olsa bozuldu" diyerek bilinçli yemeğe devam etmek, ağza giren suyu yanlışlıkla yutmak, zorla bozdurulmak.</li>
+                    <li>Kaza yalnızca günlük beş vakit farz namazlar ve vitir için yapılır.</li>
+                    <li>Kazaya kalan namazlar, mümkün olan en kısa sürede ve gücü yettikçe ödenmelidir; gecikmek günahı artırır.</li>
                 </ul>
                 <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 32 -->
-        <div class="topic-card" data-category="oruc" data-keywords="32 sahur imsak oruc baslama">
+        <div class="topic-card" data-category="oruc" data-keywords="32 orucu bozan, kaza ve kefaret gerektiren haller orucu bozan kaza kefaret 60 gun">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Oruç & Hac</span><span class="topic-title">32. Sahurun Önemi ve İmsak Vakti</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">32. Orucu Bozan, Kaza ve Kefaret Gerektiren Haller</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Sahur yapmak peygamberimizin sünnetidir ve manevi bereketi vardır.</p>
+                <p>Hanefî mezhebine göre orucu bozan durumlar ve hükümleri şunlardır:</p>
                 <ul>
-                    <li>İmsak vakti girdiğinde yeme içme kesilir. Takvimlerdeki imsak vakti orucun başlama anıdır, ezan ise imsakla birlikte okunur.</li>
+                    <li><b>Kaza ve kefaret:</b> Ramazan orucunda bilerek yemek, içmek veya cinsel ilişkide bulunmak. Kaza olarak 1 gün oruç tutulur; kefaret olarak ara vermeden 60 gün oruç tutulur (toplam 61 gün).</li>
+                    <li><b>Yalnızca kaza (1 gün):</b> Unutarak yeme-içmeden sonra “oruç bozuldu” zannıyla yemeye devam etmek; boğaza yanlışlıkla su kaçması; orucu zorla bozdurulmak gibi durumlar.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Buhari, Savm</div>
+                <p>Unutarak yiyip içmek orucu bozmaz.</p>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 33 -->
-        <div class="topic-card" data-category="oruc" data-keywords="33 fidye oruç tutamayacaklar">
+        <div class="topic-card" data-category="oruc" data-keywords="33 sahurun onemi ve imsak vakti sahur imsak oruc baslangic">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Oruç & Hac</span><span class="topic-title">33. Oruç Tutamayacak Durumdakilerin Fidyesi</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">33. Sahurun Önemi ve İmsak Vakti</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>İyileşme umudu olmayan kronik yaşlılık veya ağır hastalıklar sebebiyle hiç oruç tutamayacak durumda olanlar:</p>
+                <p>Sahur yapmak sünnettir ve bereket vesilesidir.</p>
                 <ul>
-                    <li>Tutamadıkları her bir gün için yoksullara bir fitre miktarı fidye öderler.</li>
+                    <li>Hadis-i şerifte “Sahur yapın, çünkü sahurda bereket vardır” buyrulmuştur.</li>
+                    <li>İmsak vakti girince (sabah ezanıyla birlikte) yeme-içme kesilir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: İlmihal</div>
+                <div class="ref-box">Kaynak: Buhârî, Savm; Müslim, Sıyâm</div>
             </div></div>
         </div>
 
         <!-- 34 -->
-        <div class="topic-card" data-category="oruc" data-keywords="34 zekat kimlere duser nisap miktari">
+        <div class="topic-card" data-category="oruc" data-keywords="34 oruc tutamayanlar ve fidye fidye oruc tutamayan yasli hasta">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Oruç & Hac</span><span class="topic-title">34. Zekat Kimlere Farzdır, Nisap Miktarı Nedir?</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">34. Oruç Tutamayanlar ve Fidye</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Zekat, dinen zengin sayılan müslümanların malından belli bir payı yoksullara vermesidir:</p>
+                <p>Kronik hastalık veya ileri yaş sebebiyle oruç tutmaya gücü yetmeyen ve iyileşme ümidi bulunmayanlar için fidye gerekir:</p>
                 <ul>
-                    <li><b>Nisap Miktarı:</b> 80.18 gram altın veya bunun değerinde nakit para/ticari mala sahip olmak ve üzerinden bir kameri yıl geçmektir. Oranı %2.5'tir (40'ta 1).</li>
+                    <li>Tutamadıkları her gün için bir yoksulu doyuracak miktarda (bir fitre kadar) fidye verirler.</li>
+                    <li>Geçici özrü olanlar (hastalık, yolculuk, hamilelik vb.) ise özürleri geçtikten sonra oruçlarını kaza ederler.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Zekat Rehberi</div>
+                <div class="ref-box">Kaynak: Bakara Suresi, 184; Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 35 -->
-        <div class="topic-card" data-category="oruc" data-keywords="35 hac umre farzlari ihram vakfe">
+        <div class="topic-card" data-category="oruc" data-keywords="35 zekat kimlere farzdir, nisap miktari nedir? zekat nisap altin oran">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Oruç & Hac</span><span class="topic-title">35. Haccın Farzları ve Ritüelleri</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">35. Zekât Kimlere Farzdır, Nisap Miktarı Nedir?</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Ömründe bir kez gücü yetene farz olan haccın 3 temel farzı vardır:</p>
+                <p>Zekât, dinen zengin sayılan Müslümanın malından belirli bir payı hak sahiplerine vermesidir.</p>
                 <ul>
-                    <li>1. İhrama girmek (niyet ve kıyafet).</li>
-                    <li>2. Arafat'ta vakfe yapmak (Zilhicce'nin 9. günü).</li>
-                    <li>3. Kabe'yi Ziyaret Tavafı yapmak.</li>
+                    <li><b>Nisap:</b> Temel ihtiyaçlar ve borçlar dışında 80,18 gram altın veya bu değerde nakit, ticaret malı vb. sahibi olmak ve bunun üzerinden bir kameri yıl geçmektir.</li>
+                    <li><b>Oran:</b> %2,5'tir (kırkta bir).</li>
                 </ul>
-                <div class="ref-box">Kaynak: Hac İlmihali</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 36 -->
-        <div class="topic-card" data-category="oruc" data-keywords="36 kurban kesmek sartlari vekalet">
+        <div class="topic-card" data-category="oruc" data-keywords="36 haccin farzlari hac farzlari ihram vakfe arafat tavaf">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Oruç & Hac</span><span class="topic-title">36. Kurban Kesmenin Hükmü ve Şartları</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">36. Haccın Farzları</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Asli ihtiyaçları dışında nisap miktarı mala sahip olan mukim müslümanlara kurban bayramı günlerinde kurban kesmek vaciptir.</p>
+                <p>Ömründe bir kez, bedenen ve maddi olarak gücü yeten Müslümana farz olan haccın 3 temel farzı vardır (Hanefî mezhebine göre):</p>
                 <ul>
-                    <li>Koyun/keçi 1 yaşını, sığır/manda 2 yaşını, deve 5 yaşını doldurmuş olmalıdır. Kusursuz olmaları gerekir.</li>
+                    <li>İhrama girmek.</li>
+                    <li>Arafat'ta vakfe yapmak (Zilhicce'nin 9. günü).</li>
+                    <li>Ziyaret tavafı yapmak.</li>
                 </ul>
-                <div class="ref-box">Kaynak: İlmihal</div>
+                <div class="ref-box">Kaynak: Âl-i İmrân Suresi, 97; Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 37 -->
-        <div class="topic-card" data-category="oruc" data-keywords="37 fitre sadakasi sadakai fitir">
+        <div class="topic-card" data-category="oruc" data-keywords="37 kurban kesmenin hukmu ve sartlari kurban kesmek sartlari hisse">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Oruç & Hac</span><span class="topic-title">37. Sadaka-i Fitir (Fitre) Kimlere Verilir?</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">37. Kurban Kesmenin Hükmü ve Şartları</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Ramazan bayramına kavuşan ve temel ihtiyaçları dışında nisap miktarı mala sahip olan müslümanların aile bireyleri için vermesi vacip olan sadakadır.</p>
+                <p>Temel ihtiyaçları dışında nisap miktarı mala sahip, mukim Müslümana kurban bayramında kurban kesmek vâciptir (Hanefî mezhebine göre).</p>
                 <ul>
-                    <li>Amacı, fakirlerin bayram sevincine ortak olması ve oruçlardaki kusurların telafisidir.</li>
+                    <li>Koyun ve keçi 1 yaşını, sığır ve manda 2 yaşını, deve 5 yaşını doldurmuş olmalıdır.</li>
+                    <li>Kurbanlık hayvan kusursuz olmalıdır; büyükbaş hayvanlarda 7 kişiye kadar ortaklık olabilir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Fıkıh</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 38 -->
-        <div class="topic-card" data-category="oruc" data-keywords="38 itikaf ibadeti camide kalmak">
+        <div class="topic-card" data-category="oruc" data-keywords="38 sadaka-i fitir (fitre) kimlere verilir? fitre sadaka fitir bayram">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Oruç & Hac</span><span class="topic-title">38. İtikaf İbadeti ve Ramazan'ın Son Günleri</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">38. Sadaka-i Fıtır (Fitre) Kimlere Verilir?</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Ramazan ayının son 10 gününde camide (veya kadınlar evde namaz kılınan odada) ibadet amacıyla dünyaya sırt çevirerek kapanmaktır.</p>
+                <p>Ramazan bayramı sabahına ulaşan ve temel ihtiyaçları dışında nisap miktarı mala sahip Müslüman, kendisi ve bakmakla yükümlü olduğu kişiler için fitre verir (Hanefî mezhebine göre vâciptir).</p>
                 <ul>
-                    <li>Sünnet-i kifayedir; Kadir Gecesi'ni aramak ve feyizlenmek için büyük fırsattır.</li>
+                    <li>Amacı yoksulların bayram sevincine ortak olması ve oruçtaki eksiklerin telafisine vesile olmasıdır.</li>
+                    <li>Bayram namazından önce verilmesi müstehaptır.</li>
                 </ul>
-                <div class="ref-box">Kaynak: İlmihal</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 39 -->
-        <div class="topic-card" data-category="oruc" data-keywords="39 umre ibadeti nasil yapilir">
+        <div class="topic-card" data-category="oruc" data-keywords="39 itikaf ibadeti itikaf camide kalmak ramazan">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Oruç & Hac</span><span class="topic-title">39. Umre İbadeti ve Yapılış Şekli</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">39. İtikâf İbadeti</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Kurban bayramı günleri haricinde yılın her zamanı yapılabilen sünnet-i müekkeda bir ibadettir.</p>
+                <p>İtikâf, ibadet niyetiyle mescitte kalmaktır; Ramazan'ın son on gününde yapılması sünnet-i kifayedir.</p>
                 <ul>
-                    <li>İhrama girilip Kabe tavaf edilir, Safa-Merve arasında sa'y yapılır ve tıraş olunarak ihramdan çıkılır.</li>
+                    <li>Kadınlar, evlerinde namaz kılmaya ayırdıkları yerde itikâfa girebilir.</li>
+                    <li>Kadir Gecesi'ni değerlendirmek için önemli bir fırsattır.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Hac Rehberi</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 40 -->
-        <div class="topic-card" data-category="oruc" data-keywords="40 hacu ceza kurbanlari ihram hatasi">
+        <div class="topic-card" data-category="oruc" data-keywords="40 umre ibadeti ve yapilisi umre ibadeti ihram tavaf say">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Oruç & Hac</span><span class="topic-title">40. Hac ve Umrede Ceza Kurbanları</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">40. Umre İbadeti ve Yapılışı</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>İhramlı iken yasak olan şeylerin (koku sürünmek, dikişli elbise giymek, tırnak kesmek, avlanmak vb.) ihlal edilmesi durumunda fıkhi kurallara göre ceza kurbanı kesilmesi gerekir.</p>
+                <p>Umre, yılın her zamanı yapılabilen (Arefe ve bayram günlerinde mekruh) sünnet-i müekkede bir ibadettir.</p>
                 <ul>
-                    <li>Bu cezalar hatanın derecesine göre دم (kurban), sadaka veya oruç olarak ödenir.</li>
+                    <li>İhrama girilir ve Kâbe tavaf edilir.</li>
+                    <li>Safa ile Merve arasında sa'y yapılır.</li>
+                    <li>Saçlar kısaltılır veya tıraş olunarak ihramdan çıkılır.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Hac Fıkhı</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali; Hac ve Umre rehberleri</div>
             </div></div>
         </div>
 
         <!-- 41 -->
-        <div class="topic-card" data-category="guncel" data-keywords="41 asi olmak igne serum orucu bozar mi">
+        <div class="topic-card" data-category="oruc" data-keywords="41 hac ve umrede ceza kurbanlari ceza kurbani dem ihram yasaklari">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">41. Aşı Olmak ve İğne Vurdurmak Orucu Bozar mı?</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">41. Hac ve Umrede Ceza Kurbanları</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Güncel tıp fetvalarına göre:</p>
+                <p>İhramlıyken yasak olan fiillerden biri (koku sürünmek, dikişli elbise giymek, tırnak kesmek, avlanmak vb.) işlenirse, hatanın türüne göre dem (kurban), sadaka veya oruçla ceza ödenir.</p>
                 <ul>
-                    <li>Tedavi amaçlı yapılan, gıda ve vitamin içermeyen enjeksiyonlar (aşı, antibiyotik, ağrı kesici iğneler) orucu bozmaz.</li>
-                    <li>Ancak damardan besin veren serumlar ve glikozlu sıvılar mideye gıda etkisi yapacağı için orucu bozar.</li>
+                    <li>Cezanın türü ve miktarı fiile göre değişir; ayrıntı için hac ve umre rehberlerine veya görevli din görevlilerine başvurulmalıdır.</li>
+                </ul>
+                <div class="ref-box">Kaynak: Hac fıkhı; Diyanet Hac ve Umre rehberleri</div>
+            </div></div>
+        </div>
+
+        <!-- 42 -->
+        <div class="topic-card" data-category="guncel" data-keywords="42 asi ve igne orucu bozar mi? asi igne serum oruc">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">42. Aşı ve İğne Orucu Bozar mı?</span></div><span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body"><div class="topic-content-inner">
+                <p>Diyanet'in görüşüne göre:</p>
+                <ul>
+                    <li>Tedavi amaçlı, besleyici olmayan iğneler (aşı, antibiyotik, ağrı kesici vb.) orucu bozmaz.</li>
+                    <li>Besin değeri taşıyan serum ve glikoz gibi sıvılar ise gıda sayıldığı için orucu bozar.</li>
+                </ul>
+                <p>Tereddüt hâlinde müftülüğe danışılmalıdır.</p>
+                <div class="ref-box">Kaynak: Diyanet Din İşleri Yüksek Kurulu; Diyanet İlmihali</div>
+            </div></div>
+        </div>
+
+        <!-- 43 -->
+        <div class="topic-card" data-category="guncel" data-keywords="43 dis tedavisi oruca zarar verir mi? dis tedavisi dolgu cekim oruc">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">43. Diş Tedavisi Oruca Zarar Verir mi?</span></div><span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body"><div class="topic-content-inner">
+                <p>Diş tedavisi sırasında boğaza su, kan veya ilaç kaçmadıkça oruç bozulmaz.</p>
+                <ul>
+                    <li>Tedavi zorunluysa oruçluyken yapılabilir; gerekirse tedavi iftara bırakılır.</li>
+                    <li>Şüpheli durumlarda orucun sonradan kaza edilmesi ihtiyatlı olur.</li>
+                </ul>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
+            </div></div>
+        </div>
+
+        <!-- 44 -->
+        <div class="topic-card" data-category="guncel" data-keywords="44 kan vermek veya hacamat yaptirmak kan vermek hacamat abdest oruc">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">44. Kan Vermek veya Hacamat Yaptırmak</span></div><span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body"><div class="topic-content-inner">
+                <p>Kan vermek veya hacamat yaptırmak orucu bozmaz.</p>
+                <ul>
+                    <li>Abdest açısından mezhepler farklıdır: Hanefî'de vücuttan akan kan abdesti bozar; Şafiî'de bozmaz.</li>
+                </ul>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
+            </div></div>
+        </div>
+
+        <!-- 45 -->
+        <div class="topic-card" data-category="guncel" data-keywords="45 kripto para ticareti hakkinda gorusler kripto bitcoin ticaret caiz">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">45. Kripto Para Ticareti Hakkında Görüşler</span></div><span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body"><div class="topic-content-inner">
+                <p>Kripto paralar yeni bir konu olduğundan âlimler ve fetva kurulları arasında farklı değerlendirmeler vardır.</p>
+                <ul>
+                    <li>Türkiye'de Diyanet'in de aralarında bulunduğu bazı fetva kurulları; devlet güvencesinin olmaması, aşırı spekülasyon ve belirsizlik (garar) riski sebebiyle kripto para alım satımını sakıncalı görmüştür.</li>
+                    <li>Bu alanda yatırım yapmadan önce güncel fetvaların ve resmî düzenlemelerin takip edilmesi gerekir.</li>
+                </ul>
+                <div class="ref-box">Kaynak: Diyanet Din İşleri Yüksek Kurulu ve fetva kurulları</div>
+            </div></div>
+        </div>
+
+        <!-- 46 -->
+        <div class="topic-card" data-category="guncel" data-keywords="46 organ bagisi ve organ nakli organ bagisi nakli">
+            <div class="topic-header" onclick="toggleCard(this)">
+                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">46. Organ Bağışı ve Organ Nakli</span></div><span class="topic-arrow">▼</span>
+            </div>
+            <div class="topic-body"><div class="topic-content-inner">
+                <p>Hayat kurtarmak büyük bir erdemdir. Diyanet'e göre organ nakli şu şartlarla caizdir:</p>
+                <ul>
+                    <li>Tedavinin başka yolla mümkün olmaması (zaruret).</li>
+                    <li>Organın parayla satılmaması; bağış olması.</li>
+                    <li>Kişinin hayattayken rızası veya vefatından sonra yakınlarının izni.</li>
                 </ul>
                 <div class="ref-box">Kaynak: Diyanet Din İşleri Yüksek Kurulu</div>
             </div></div>
         </div>
 
-        <!-- 42 -->
-        <div class="topic-card" data-category="guncel" data-keywords="42 dis tedavisi dolgu cekim orucu bozar mi">
-            <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">42. Diş Tedavisi, Dolgu ve Çekim Oruca Zarar Verir mi?</span></div><span class="topic-arrow">▼</span>
-            </div>
-            <div class="topic-body"><div class="topic-content-inner">
-                <p>Diş tedavisi sırasında boğaza su, kan veya ilacın yutulmaması şartıyla tedavi orucu bozmaz.</p>
-                <ul>
-                    <li>Tedavi zorunluluk gerektiriyorsa oruç bozulmadan yapılabilir; ancak şüpheli durumlarda orucun sonra kaza edilmesi ihtiyatla karşılanır.</li>
-                </ul>
-                <div class="ref-box">Kaynak: Fetvalar</div>
-            </div></div>
-        </div>
-
-        <!-- 43 -->
-        <div class="topic-card" data-category="guncel" data-keywords="43 kan vermek hacamat orucu abdesti bozar mi">
-            <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">43. Kan Vermek veya Hacamat Yaptırmak</span></div><span class="topic-arrow">▼</span>
-            </div>
-            <div class="topic-body"><div class="topic-content-inner">
-                <p>Kan vermek veya hacamat yaptırmak orucu bozmaz.</p>
-                <ul>
-                    <li>Abdest açısından ise Hanefi mezhebinde vücuttan akan kan abdesti bozarken, Şafii mezhebinde kan çıkması abdesti bozmaz.</li>
-                </ul>
-                <div class="ref-box">Kaynak: Fıkıh</div>
-            </div></div>
-        </div>
-
-        <!-- 44 -->
-        <div class="topic-card" data-category="guncel" data-keywords="44 kripto para bitcoin ticaret helal mi">
-            <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">44. Kripto Para Ticareti Yapmak Caiz mi?</span></div><span class="topic-arrow">▼</span>
-            </div>
-            <div class="topic-body"><div class="topic-content-inner">
-                <p>Günümüz İslam alimlerinin ve kurullarının çoğunluğuna göre;</p>
-                <ul>
-                    <li>Herhangi bir devlet güvencesi olmaması, aşırı spekülasyona (vurgun/aldatma riski) açık olması ve finansal belirsizlikler barındırması nedeniyle kripto para alım satımı sakıncalı ve uzak durulması gereken alanlar olarak değerlendirilmiştir.</li>
-                </ul>
-                <div class="ref-box">Kaynak: Kurul Fetvaları</div>
-            </div></div>
-        </div>
-
-        <!-- 45 -->
-        <div class="topic-card" data-category="guncel" data-keywords="45 organ bagis nakli dini hukum">
-            <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">45. Organ Bağışı ve Organ Nakli Yapmak Caiz mi?</span></div><span class="topic-arrow">▼</span>
-            </div>
-            <div class="topic-body"><div class="topic-content-inner">
-                <p>Hayat kurtarmak en büyük erdemlerden biridir. Buna göre organ nakli şu şartlarla caizdir:</p>
-                <ul>
-                    <li>Tedavisi başka türlü mümkün olmayan zaruri durumlar olması, organın parasal karşılıkla satılmaması (bağış olması) ve kişinin ölümünden önce rızasının bulunması.</li>
-                </ul>
-                <div class="ref-box">Kaynak: Diyanet</div>
-            </div></div>
-        </div>
-
-        <!-- 46 -->
-        <div class="topic-card" data-category="guncel" data-keywords="46 sigorta hayat kasko faiz mi">
-            <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">46. Sigorta Çeşitleri ve Katılım Sigortacılığı</span></div><span class="topic-arrow">▼</span>
-            </div>
-            <div class="topic-body"><div class="topic-content-inner">
-                <p>Devletçe zorunlu kılınan trafik sigortası gibi poliçeler zaruret gereği caizdir.</p>
-                <ul>
-                    <li>Ancak ticari ve faizli hayat sigortaları yerine İslam'ın yardımlaşma esaslarına dayanan **Katılım Sigortacılığı** sistemleri tercih edilmelidir.</li>
-                </ul>
-                <div class="ref-box">Kaynak: İslam Hukuku</div>
-            </div></div>
-        </div>
-
         <!-- 47 -->
-        <div class="topic-card" data-category="guncel" data-keywords="47 faizli banka islemleri calismak">
+        <div class="topic-card" data-category="guncel" data-keywords="47 sigorta cesitleri ve katilim sigortaciligi sigorta kasko hayat katilim tekaful">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">47. Banka Faizleri ve Finansal İşlemlerin Hükmü</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">47. Sigorta Çeşitleri ve Katılım Sigortacılığı</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Kur'an-ı Kerim'de faiz (riba) net bir dille haram kılınmıştır ve savaş açmakla eşdeğer tutulmuştur.</p>
+                <p>Devletçe zorunlu kılınan sigortalar (ör. trafik sigortası) zaruret sebebiyle caizdir.</p>
                 <ul>
-                    <li>Faizli kredi çekmek, faiz geliri elde etmek kesinlikle haramdır. İslami hassasiyete sahip katılım bankacılığı ve faizsiz finans yöntemleri aranmalıdır.</li>
+                    <li>Ticari ve faiz içeren hayat sigortaları yerine, karşılıklı yardımlaşma esasına dayanan katılım (tekâful) sigortacılığı tercih edilmelidir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: İlmihal</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali; İslam hukuku</div>
             </div></div>
         </div>
 
         <!-- 48 -->
-        <div class="topic-card" data-category="guncel" data-keywords="48 estetik ameliyatameliyatlar burun">
+        <div class="topic-card" data-category="guncel" data-keywords="48 banka faizi ve finansal islemlerin hukmu faiz riba banka kredi">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">48. Estetik Ameliyat Yaptırmanın Sınırları</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">48. Banka Faizi ve Finansal İşlemlerin Hükmü</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Estetik operasyonlarda ölçü şöyledir:</p>
+                <p>Kur'an-ı Kerim'de faiz (riba) kesin olarak haram kılınmıştır.</p>
                 <ul>
-                    <li>Kaza, yanık, doğuştan gelen ağır kusur veya sağlığı tehdit eden şekil bozukluklarını gidermek için yapılan ameliyatlar tedavi niteliğinde olup caizdir.</li>
-                    <li>Sırf daha güzel görünmek, beğenilmek amacıyla yapılan değiştirmeler ise fıtratı bozmak sayıldığı için haram kılınmıştır.</li>
+                    <li>Faizli kredi almak ve faiz geliri elde etmek haramdır.</li>
+                    <li>Bu sebeple faizsiz finans ve katılım bankacılığı gibi alternatifler tercih edilmelidir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Fetvalar</div>
+                <div class="ref-box">Kaynak: Bakara Suresi, 275-279</div>
             </div></div>
         </div>
 
         <!-- 49 -->
-        <div class="topic-card" data-category="guncel" data-keywords="49 gida katkilari jelatin e kodu helal">
+        <div class="topic-card" data-category="guncel" data-keywords="49 estetik ameliyatin sinirlari estetik ameliyat burun">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">49. Hazır Gıdalardaki Katkı Maddeleri ve Jelatin</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">49. Estetik Ameliyatın Sınırları</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Hazır gıdalarda kullanılan katkı maddelerinin kaynağı çok önemlidir:</p>
+                <p>Estetik ameliyatlarda ölçü şudur:</p>
                 <ul>
-                    <li>Domuz ve helal kesilmemiş hayvan katkılı jelatinler veya alkol içeren katkı maddeleri haramdır. Helal sertifikalı ve güvenilir markaların tercih edilmesi mümin için takvadandır.</li>
+                    <li>Kaza, yanık veya doğuştan gelen kusurları gidermek ya da sağlığı tehdit eden durumları tedavi etmek için yapılan ameliyatlar caizdir.</li>
+                    <li>Sırf daha güzel görünmek için, Allah'ın yarattığı hâli değiştirmeye yönelik ameliyatlar ise dinen sakıncalı görülmüştür.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Gıda Fıkhı</div>
+                <div class="ref-box">Kaynak: Diyanet fetvaları</div>
             </div></div>
         </div>
 
         <!-- 50 -->
-        <div class="topic-card" data-category="guncel" data-keywords="50 piyango loto sans oyunlari kumar">
+        <div class="topic-card" data-category="guncel" data-keywords="50 hazir gidalarda katki maddeleri ve jelatin gida katki jelatin e kodu helal">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">50. Piyango, Loto ve Şans Oyunlarının Hükmü</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">50. Hazır Gıdalarda Katkı Maddeleri ve Jelatin</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Milli piyango, sayısal loto, iddia, bahis ve benzeri tüm şans oyunları dinimizde kesinlikle kumar (maysir) kapsamındadır.</p>
+                <p>Hazır gıdalarda kullanılan katkı maddelerinin kaynağı önemlidir:</p>
                 <ul>
-                    <li>Emeksiz kazanç ve başkasının kaybetmesi üzerine kurulduğu için bu yolla kazanılan paralar haramdır, hayır amacıyla kullanılmaz.</li>
+                    <li>Domuz kaynaklı veya dinen uygun kesilmemiş hayvandan elde edilen jelatin ve benzeri katkılar haramdır.</li>
+                    <li>Şarap ve içki türevli maddelerden kaçınılmalı; helal sertifikalı ürünler tercih edilmelidir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: İlmihal</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali; Gıda fıkhı</div>
             </div></div>
         </div>
 
         <!-- 51 -->
-        <div class="topic-card" data-category="aile" data-keywords="51 nikah sartlari dini nikah">
+        <div class="topic-card" data-category="guncel" data-keywords="51 piyango, loto ve sans oyunlari piyango loto bahis kumar maysir">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Aile & Hayat</span><span class="topic-title">51. Dini Nikahın (İcap ve Kabul) Şartları Nelerdir?</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">51. Piyango, Loto ve Şans Oyunları</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>İslam hukukuna göre geçerli bir nikahın kıyılması için şu rükünler şarttır:</p>
+                <p>Milli piyango, loto, iddia ve bahis gibi şans oyunları dinen kumar (maysir) kapsamındadır.</p>
                 <ul>
-                    <li>Tarafların evlenmeye rızası (icap ve kabul), akli dengenin yerinde olması, en az iki adil şahit huzurunda irade beyanı ve mehir miktarının belirlenmesidir.</li>
+                    <li>Başkasının kaybı üzerine kurulu, emeksiz kazanç sağladığı için haramdır; kazancı hayır amacıyla da olsa kullanılmaz.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Aile İlmihali</div>
+                <div class="ref-box">Kaynak: Mâide Suresi, 90</div>
             </div></div>
         </div>
 
         <!-- 52 -->
-        <div class="topic-card" data-category="aile" data-keywords="52 mehir nedir cesitleri">
+        <div class="topic-card" data-category="aile" data-keywords="52 dini nikahin sartlari nikah sartlari dini nikah sahit">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Aile & Hayat</span><span class="topic-title">52. Mehir Nedir, Çeşitleri Nelerdir?</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">52. Dinî Nikahın Şartları</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Mehir, evlilik esnasında erkeğin kadına vermeyi taahhüt ettiği mal veya paradır:</p>
+                <p>İslam hukukuna göre geçerli bir nikâh için şunlar gerekir:</p>
                 <ul>
-                    <li><b>Mehir-i Muaccel:</b> Nikah anında peşin ödenen mehir.</li>
-                    <li><b>Mehir-i Müeccel:</b> Boşanma veya ölüm gibi ileriki bir vadeye bağlanmış olan mehir borcudur. Kadının hakkıdır, vazgeçilmedikçe ödenmelidir.</li>
+                    <li>Tarafların evlenmeye rızası (icap ve kabul).</li>
+                    <li>Akıllı ve ergin olmak.</li>
+                    <li>En az iki erkek veya bir erkek ile iki kadın şahidin huzurunda akdin yapılması.</li>
+                    <li>Mehir belirlenir; belirlenmese bile nikâh geçerlidir ve emsal mehir (mehr-i misil) gerekir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: İslam Hukuku</div>
+                <p>Türkiye'de resmî nikâh olmadan kıyılan dinî nikâh hukuken geçerli değildir; önce resmî nikâh yapılması gerekir.</p>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 53 -->
-        <div class="topic-card" data-category="aile" data-keywords="53 talak bosanma hakki">
+        <div class="topic-card" data-category="aile" data-keywords="53 mehir nedir, cesitleri nelerdir? mehir muaccel mueccel">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Aile & Hayat</span><span class="topic-title">53. İslam Hukukunda Talak (Boşanma) Hakları</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">53. Mehir Nedir, Çeşitleri Nelerdir?</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Boşanma (talak), evlilik birliğinin sürdürülemediği durumlarda başvuralacak son çaredir.</p>
+                <p>Mehir, evlilikte erkeğin kadına vermeyi üstlendiği mal veya paradır.</p>
                 <ul>
-                    <li>Peygamberimiz *"Helal kıldığı şeyler içinde Allah'ın en sevmediği şey boşanmadandır"* buyurmuştur. Usulüne uygun iddet sürelerine dikkat edilmelidir.</li>
+                    <li><b>Mehr-i muaccel:</b> Nikâh sırasında peşin verilen mehir.</li>
+                    <li><b>Mehr-i müeccel:</b> Boşanma veya ölüm gibi ileri bir vadeye bağlanan mehir; kadının hakkıdır, kadın vazgeçmedikçe ödenmelidir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Aile Hukuku</div>
+                <div class="ref-box">Kaynak: Nisâ Suresi, 4; Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 54 -->
-        <div class="topic-card" data-category="aile" data-keywords="54 sut kardesligi evlenme engeli">
+        <div class="topic-card" data-category="aile" data-keywords="54 bosanma (talak) hukumleri talak bosanma iddet">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Aile & Hayat</span><span class="topic-title">54. Süt Kardeşliği ve Evlenme Engelleri</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">54. Boşanma (Talak) Hükümleri</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Bebeklik döneminde (ilk 2 yaş içinde) bir kadından anne sütü emen çocuklar süt kardeşi sayılırlar.</p>
+                <p>Boşanma, evlilik birliğinin sürdürülemediği durumlarda başvurulacak son çaredir.</p>
                 <ul>
-                    <li>Kan bağı gibi süt bağı da evlenmeyi ebediyen haram kılınan (mahrem) engellerdendir.</li>
+                    <li>Bir rivayete göre Peygamberimiz, Allah katında helal şeyler arasında en sevimsizin boşanma olduğunu bildirmiştir.</li>
+                    <li>Boşanma sonrası kadının bekleme süresi (iddet) vardır.</li>
+                    <li>Türkiye'de boşanma mahkeme kararıyla gerçekleşir; dinî hükümler vicdanî ve ahlakî sorumluluk olarak ayrıca gözetilir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: İlmihal</div>
+                <div class="ref-box">Kaynak: Ebû Dâvûd, Talâk; Aile hukuku</div>
             </div></div>
         </div>
 
         <!-- 55 -->
-        <div class="topic-card" data-category="aile" data-keywords="55 miras paylasimi kadin erkek hisse">
+        <div class="topic-card" data-category="aile" data-keywords="55 sut kardesligi ve evlenme engelleri sut kardesligi evlenme engeli">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Aile & Hayat</span><span class="topic-title">55. İslam'da Miras Taksimi Esasları</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">55. Süt Kardeşliği ve Evlenme Engelleri</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Miras paylaşımları Kur'an-ı Kerim'de (Nisa Suresi) en ince detayına kadar ilahi adaletle belirlenmiştir.</p>
+                <p>Bebeklik döneminde (iki yaşından önce; Ebû Hanîfe'ye göre iki buçuk yaşından önce) aynı kadından süt emen çocuklar süt kardeşi sayılır.</p>
                 <ul>
-                    <li>Erkek ve kadın varislerin aile içindeki geçindirme ve mal edinme yükümlülüklerindeki dengeler gözetilerek paylar hakkaniyetle taksim edilir.</li>
+                    <li>Kan bağı gibi süt bağı da evlenmeyi ebediyen haram kılar.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Miras Hukuku</div>
+                <div class="ref-box">Kaynak: Nisâ Suresi, 23; Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 56 -->
-        <div class="topic-card" data-category="aile" data-keywords="56 ana babaya itaat riza hakkı">
+        <div class="topic-card" data-category="aile" data-keywords="56 islam'da miras taksimi esaslari miras taksim pay veraset">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Aile & Hayat</span><span class="topic-title">56. Ana ve Babaya İtaat, Hakları Gözetmek</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">56. İslam'da Miras Taksimi Esasları</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Allah'a ibadetten hemen sonra Kur'an'da ana babaya iyi davranılması emredilmiştir.</p>
+                <p>Miras payları Kur'an-ı Kerim'de (Nisâ Suresi, 11-12 ve 176) ayrıntılı olarak belirlenmiştir.</p>
                 <ul>
-                    <li>Onlara "öf" bile denilmez, tatlı söz söylenir. Duaları müminin sırtını yere getirmez; rızalarını kazanmak cennetin anahtarıdır.</li>
+                    <li>Çocukların mirasında erkek çocuğa, kız çocuğunun iki katı pay verilir; gerekçesi, aile geçindirme sorumluluğunun erkeğe yüklenmiş olmasıdır.</li>
+                    <li>Anne, baba, eş ve diğer yakınların payları da ayet ve hadislerle belirlenmiştir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Ahlak</div>
+                <p>Pay hesapları durumdan duruma değiştiği için müftülüğe veya uzman bir hukukçuya danışılmalıdır.</p>
+                <div class="ref-box">Kaynak: Nisâ Suresi, 11-12, 176</div>
             </div></div>
         </div>
 
         <!-- 57 -->
-        <div class="topic-card" data-category="aile" data-keywords="57 akraba ziyareti sila i rahim">
+        <div class="topic-card" data-category="aile" data-keywords="57 anne ve babaya iyilik anne baba itaat saygi">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Aile & Hayat</span><span class="topic-title">57. Sıla-i Rahim (Akraba Haklarını Gözetmek)</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">57. Anne ve Babaya İyilik</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Akrabalık bağlarını gözetmek, sormak, ziyaret etmek ve yardımlaşmak dinimizde sıla-i rahim olarak adlandırılır ve şiddetle tavsiye edilir.</p>
+                <p>Kur'an-ı Kerim'de Allah'a kulluktan hemen sonra anne babaya iyi davranılması emredilmiştir.</p>
                 <ul>
-                    <li>Sıla-i rahim ömrü bereketlendirir ve rızkı çoğaltır.</li>
+                    <li>Onlara “öf” bile denmez; kendilerine güzel söz söylenir (İsrâ, 23).</li>
+                    <li>Hadis-i şerifte Rabbin rızasının, anne babanın rızasında olduğu bildirilmiştir.</li>
+                    <li>Ancak Allah'a isyan konusunda anne babaya itaat edilmez.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Hadisler</div>
+                <div class="ref-box">Kaynak: İsrâ Suresi, 23; Tirmizî, Birr</div>
             </div></div>
         </div>
 
         <!-- 58 -->
-        <div class="topic-card" data-category="aile" data-keywords="58 komsu haklari komsuluk">
+        <div class="topic-card" data-category="aile" data-keywords="58 sila-i rahim (akraba haklarini gozetmek) sila i rahim akraba ziyaret">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Aile & Hayat</span><span class="topic-title">58. Komşuluk Hakları ve Komşuya İyilik</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">58. Sıla-i Rahim (Akraba Haklarını Gözetmek)</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Hz. Peygamber komşuluk haklarına o kadar çok vurgu yapmıştır ki, Cebrail'in komşuyu komşuya varis kılacağını zannettiğini söylemiştir.</p>
+                <p>Akraba ile bağı sürdürmek, hâl hatır sormak ve yardımlaşmak sıla-i rahimdir.</p>
                 <ul>
-                    <li>"Komşusu açken tok yatan bizden değildir" hadisi komsuluk sorumluluğunu özetler.</li>
+                    <li>Hadis-i şerifte sıla-i rahmin rızkın genişlemesine ve ömrün bereketlenmesine vesile olduğu bildirilmiştir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Riyazü's-Salihin</div>
+                <div class="ref-box">Kaynak: Buhârî, Edeb</div>
             </div></div>
         </div>
 
         <!-- 59 -->
-        <div class="topic-card" data-category="aile" data-keywords="59 yetim hakki korumak">
+        <div class="topic-card" data-category="aile" data-keywords="59 komsuluk haklari komsu haklari komsuluk">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Aile & Hayat</span><span class="topic-title">59. Yetimi Gözetmek ve Yetim Hakkı</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">59. Komşuluk Hakları</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Yetimlerin haklarını korumak, onlara kol kanat germek toplumsal huzurun teminatıdır.</p>
+                <p>Peygamberimiz, Cebrail'in kendisine komşu hakkında o kadar tavsiyede bulunduğunu, hatta komşuyu mirasçı kılacağını sandığını bildirmiştir.</p>
                 <ul>
-                    <li>Yetim malı yemek en büyük helaket getiren günahlardandır. Yetimi koruyan kimse cennette Peygamberimizle yan yana olacaktır.</li>
+                    <li>Komşunun açken tok yatmaması, ona iyilik yapılması ve eziyet edilmemesi esastır.</li>
                 </ul>
-                <div class="ref-box">Kaynak: İlmihal</div>
+                <div class="ref-box">Kaynak: Buhârî, Edeb; Edebü'l-Müfred</div>
             </div></div>
         </div>
 
         <!-- 60 -->
-        <div class="topic-card" data-category="aile" data-keywords="60 akika kurbani cocuk dogunca">
+        <div class="topic-card" data-category="aile" data-keywords="60 yetimi gozetmek ve yetim hakki yetim hakki koruma">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Aile & Hayat</span><span class="topic-title">60. Akika Kurbanı Kesmenin Hükmü</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">60. Yetimi Gözetmek ve Yetim Hakkı</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Yeni dünyaya gelen çocuk için Allah'a şükür amacıyla kesilen müstehap kurbandır.</p>
+                <p>Yetimlerin haklarını korumak, toplumsal sorumluluklarımızdandır.</p>
                 <ul>
-                    <li>Erkek çocuk için iki, kız çocuk için bir kurban kesilmesi sünnet olarak tavsiye edilmiştir.</li>
+                    <li>Yetim malı yemek, büyük günahlardandır.</li>
+                    <li>Hadis-i şerifte yetimi koruyanın cennette Peygamberimizle yakın olacağı müjdelenmiştir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Fıkıh</div>
+                <div class="ref-box">Kaynak: Nisâ Suresi, 10; Buhârî, Edeb</div>
             </div></div>
         </div>
 
         <!-- 61 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="61 kul hakki helallik istemek">
+        <div class="topic-card" data-category="aile" data-keywords="61 akika kurbani akika kurbani cocuk">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Ahlak & Günahlar</span><span class="topic-title">61. Kul Hakkının Ağırlığı ve Helalleşme</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">61. Akika Kurbanı</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Kul hakkı, Allah'ın tövbeyle affetmediği ve hak sahibinin rızasına bıraktığı en ağır veballerdendir.</p>
+                <p>Çocuğun doğumunun şükrü olarak kesilen kurbandır.</p>
                 <ul>
-                    <li>Ahirette müflis olmamak için dünyada iken hak sahipleriyle mutlaka helalleşilmeli, gasp edilen haklar iade edilmelidir.</li>
+                    <li>Erkek çocuk için iki, kız çocuk için bir hayvan kesilmesi tavsiye edilir.</li>
+                    <li>Akikanın hükmü mezhepler arasında farklıdır: Hanefî'de mübah (müstehap), diğer üç mezhepte sünnettir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Hadisler</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali</div>
             </div></div>
         </div>
 
         <!-- 62 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="62 giybet arkadan konusmak">
+        <div class="topic-card" data-category="ahlak" data-keywords="62 kul hakkinin agirligi ve helallesme kul hakki helallik helallesmek">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Ahlak & Günahlar</span><span class="topic-title">62. Gıybet (Arkadan Çekiştirmek) Nedir?</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">62. Kul Hakkının Ağırlığı ve Helalleşme</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Din kardeşinin arkasından, yüzüne söylendiğinde hoşlanmayacağı kusur ve hallerini konuşmak gıybettir.</p>
+                <p>Kul hakkı, hak sahibi razı olmadıkça affedilmeyeceği bildirilen ağır günahlardandır.</p>
                 <ul>
-                    <li>Kur'an-ı Kerim'de gıybet etmek, *"Ölü kardeşinizin etini yemek"* gibi iğrenç bir benzetmeyle yasaklanmıştır.</li>
+                    <li>Hadis-i şerifte gerçek müflisin, namaz ve oruç sahibi olduğu hâlde başkalarının haklarını yiyen kimse olduğu bildirilmiştir.</li>
+                    <li>Bu yüzden dünyada iken hak sahipleriyle helalleşmek ve hakları iade etmek gerekir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: İlmihal</div>
+                <div class="ref-box">Kaynak: Müslim, Birr</div>
             </div></div>
         </div>
 
         <!-- 63 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="63 yalan soylemek iftira">
+        <div class="topic-card" data-category="ahlak" data-keywords="63 giybet nedir? giybet arkadan konusmak">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Ahlak & Günahlar</span><span class="topic-title">63. Yalan Söylemek ve İftiranın Cezası</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">63. Gıybet Nedir?</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Yalan, münafıklık alametlerinden biridir ve insanın güvenilirliğini yok eder.</p>
+                <p>Din kardeşinin arkasından, yüzüne söylense hoşlanmayacağı gerçek bir kusurunu anmak gıybettir.</p>
                 <ul>
-                    <li>Masum bir insana iftira atmak ise hem iftira hem de kul hakkı olduğu için en büyük felaket getiren günahlardandır.</li>
+                    <li>Kur'an-ı Kerim'de gıybet, ölü kardeşin etini yemeğe benzetilerek yasaklanmıştır.</li>
+                    <li>Kişide olmayan bir kusuru söylemek ise iftiradır ve daha ağır bir günahtır.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Ahlak</div>
+                <div class="ref-box">Kaynak: Hucurât Suresi, 12</div>
             </div></div>
         </div>
 
         <!-- 64 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="64 kibir bas donmesi ucub">
+        <div class="topic-card" data-category="ahlak" data-keywords="64 yalan ve iftiranin gunahi yalan iftira munafik">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Ahlak & Günahlar</span><span class="topic-title">64. Kibir, Ucub ve Kendini Beğenmişlik</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">64. Yalan ve İftiranın Günahı</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Kibir, kendini üstün görüp başkalarını hor görmektir.</p>
+                <p>Yalan, hadis-i şerifte münafıklık alametlerinden biri sayılmıştır; insanın güvenilirliğini yok eder.</p>
                 <ul>
-                    <li>Peygamberimiz *"Kalbinde zerre kadar kibir olan kimse cennete giremez"* buyurarak bu kötü huydan sakınmayı emretmiştir.</li>
+                    <li>Masum birine iftira atmak ise hem iftira hem kul hakkı olduğu için çok büyük bir günahtır.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Riyazü's-Salihin</div>
+                <div class="ref-box">Kaynak: Buhârî, Îmân; Nûr Suresi</div>
             </div></div>
         </div>
 
         <!-- 65 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="65 haset cekememezlik">
+        <div class="topic-card" data-category="ahlak" data-keywords="65 kibir, ucub ve kendini begenmislik kibir ucub kendini begenmek">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Ahlak & Günahlar</span><span class="topic-title">65. Haset Etmek (Başkasının Nimetini İstememek)</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">65. Kibir, Ucub ve Kendini Beğenmişlik</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Haset, başkasında bulunan maddi veya manevi nimetin o kişiden gitmesini ve kendisine gelmesini arzu etmektir.</p>
+                <p>Kibir, kendini üstün görüp başkalarını küçümsemektir.</p>
                 <ul>
-                    <li>Hadis-i şerifte *"Ateşin odunu yiyip bitirdiği gibi haset de iyilikleri yer bitirir"* denilmiştir.</li>
+                    <li>Hadis-i şerifte kalbinde zerre kadar kibir bulunan kimsenin cennete giremeyeceği bildirilmiştir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Hadisler</div>
+                <div class="ref-box">Kaynak: Müslim, Îmân</div>
             </div></div>
         </div>
 
         <!-- 66 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="66 israf etmek savurganlik">
+        <div class="topic-card" data-category="ahlak" data-keywords="66 haset ve gipta haset gipta cekememezlik">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Ahlak & Günahlar</span><span class="topic-title">66. İsraf Etmek ve Malı Boşuna Harcamak</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">66. Haset ve Gıpta</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>İsraf, her işte ölçüyü kaçırmak, dini ve maddi imkanları boş yere harcamaktır.</p>
+                <p>Haset, başkasındaki nimetin yok olmasını istemektir.</p>
                 <ul>
-                    <li>Yüce Allah *"Şüphesiz ki Allah israf edenleri sevmez"* buyurmuştur. Su kullanımından gıdaya kadar her şeyde ölçü esastır.</li>
+                    <li>Bir rivayette haset ateşin odunu yediği gibi iyilikleri yer bitirir denmiştir.</li>
+                    <li>Başkasının nimetine özenip aynısını Allah'tan istemek (gıpta) ise haset değildir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: İlmihal</div>
+                <div class="ref-box">Kaynak: Ebû Dâvûd, Edeb</div>
             </div></div>
         </div>
 
         <!-- 67 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="67 riya gosteris ibadet">
+        <div class="topic-card" data-category="ahlak" data-keywords="67 israf ve mali bosa harcamak israf savurganlik">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Ahlak & Günahlar</span><span class="topic-title">67. Riya (Gösteriş Yapmak) ve Gizli Şirk</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">67. İsraf ve Malı Boşa Harcamak</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Riya, ibadetleri ve iyi amelleri Allah rızası için değil, insanlara göstermek ve övgü almak için yapmaktır.</p>
+                <p>İsraf, ihtiyaç ve ölçünün ötesinde harcamaktır.</p>
                 <ul>
-                    <li>Peygamberimiz bunu "küçük şirk" olarak nitelendirmiş ve amel mükafatını yok edeceğini bildirmiştir.</li>
+                    <li>Kur'an-ı Kerim'de israf edenlerin Allah tarafından sevilmediği bildirilmiştir (A'râf, 31).</li>
+                    <li>Su kullanımından yemeğe kadar her konuda ölçülü olmak esastır.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Kalp Amelleri</div>
+                <div class="ref-box">Kaynak: A'râf Suresi, 31</div>
             </div></div>
         </div>
 
         <!-- 68 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="68 cimrilik hirs mal tutkusu">
+        <div class="topic-card" data-category="ahlak" data-keywords="68 riya (gosteris) ve gizli sirk riya gosteris kucuk sirk">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Ahlak & Günahlar</span><span class="topic-title">68. Cimrilik ve Aşırı Dünya Hırsı</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">68. Riya (Gösteriş) ve Gizli Şirk</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Cimrilik, kişinin Allah'ın kendisine lütfettiği malları hak sahipleriyle paylaşmaktan kaçınmasıdır.</p>
+                <p>Riya, ibadet ve iyilikleri Allah rızası için değil, insanlara gösterip övgü almak için yapmaktır.</p>
                 <ul>
-                    <li>Cimri insan hem halk nezdinde sevilmez hem de ilahi rahmetten uzaklaşma riski taşır.</li>
+                    <li>Peygamberimiz riyayı “küçük şirk” olarak nitelendirmiştir.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Ahlak</div>
+                <div class="ref-box">Kaynak: Ahmed b. Hanbel, Müsned</div>
             </div></div>
         </div>
 
         <!-- 69 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="69 sabir sukür imtihan">
+        <div class="topic-card" data-category="ahlak" data-keywords="69 cimrilik ve asiri dunya hirsi cimrilik hirs dunya">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Ahlak & Günahlar</span><span class="topic-title">69. Sabır ve Şükür Kavramlarının Önemi</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">69. Cimrilik ve Aşırı Dünya Hırsı</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Müminin dünyadaki hayat dengesi iki kanat üzerine kuruludur:</p>
+                <p>Cimrilik, Allah'ın verdiği nimetleri hak sahipleriyle paylaşmaktan kaçınmaktır.</p>
                 <ul>
-                    <li><b>Şükür:</b> Nimet geldiğinde Allah'ı anmak ve O'na boyun eğmek.</li>
-                    <li><b>Sabır:</b> Zorluk ve musibetler karşısında isyan etmeyip metanetle direnç göstermek.</li>
+                    <li>Cimri insan toplumda sevilmediği gibi infak ve sadaka fırsatlarını da kaçırır.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Hadisler</div>
+                <div class="ref-box">Kaynak: Diyanet İlmihali; ahlak kitapları</div>
             </div></div>
         </div>
 
         <!-- 70 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="70 ihsan bilinci allahı görüyormuş gibi yaşamak">
+        <div class="topic-card" data-category="ahlak" data-keywords="70 sabir ve sukur sabir sukur imtihan">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">Ahlak & Günahlar</span><span class="topic-title">70. İhsan Bilinci (Allah'ı Görüyormuş Gibi Yaşamak)</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">70. Sabır ve Şükür</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>İhsan, İslam ahlakının zirve noktasıdır.</p>
+                <p>Müminin hayatı iki kanat üzerine kuruludur:</p>
                 <ul>
-                    <li>Hadis-i şerifte açıklandığı gibi: *"Allah'a, sanki O'nu görüyormuş gibi ibadet etmendir; çünkü sen O'nu görmesen de O seni kesinlikle görmektedir."* Bu şuurla yaşayan insan her an oto-kontrol altındadır.</li>
+                    <li><b>Şükür:</b> Nimet geldiğinde Allah'ı anıp O'na şükretmek.</li>
+                    <li><b>Sabır:</b> Zorluk ve musibet karşısında isyan etmeyip metanetle dayanmak.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Cebrail Hadisi (Buhari ve Müslim)</div>
+                <div class="ref-box">Kaynak: Müslim, Zühd</div>
             </div></div>
         </div>
 
-        <!-- Ekstra 71 -->
-        <div class="topic-card" data-category="itikat" data-keywords="71 ehlisunnet velcemaat itikadi">
+        <!-- 71 -->
+        <div class="topic-card" data-category="ahlak" data-keywords="71 ihsan bilinci ihsan bilinci cebrail hadisi">
             <div class="topic-header" onclick="toggleCard(this)">
-                <div class="topic-info"><span class="topic-category-tag">İtikat & İman</span><span class="topic-title">71. Ehl-i Sünnet ve'l-Cemaat Yolu Nedir?</span></div><span class="topic-arrow">▼</span>
+                <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">71. İhsan Bilinci</span></div><span class="topic-arrow">▼</span>
             </div>
             <div class="topic-body"><div class="topic-content-inner">
-                <p>Hz. Muhammed'in ve ashabının (cemaat) izinden giden, Kur'an ve sahih sünneti rehber edinen itikadi fırkadır.</p>
+                <p>İhsan, ahlakın zirvesidir. Cebrail hadisinde Peygamberimiz ihsanı şöyle açıklamıştır:</p>
                 <ul>
-                    <li>Aşırılıklardan uzak, dengeli, orta yolu (vasat ümmet) temsil eden hidayet çizgisidir.</li>
+                    <li>İhsan, Allah'ı görüyormuşçasına ibadet etmendir; sen O'nu görmesen de O seni görmektedir.</li>
+                    <li>Bu bilinçle yaşayan kimse her an kendi iç denetimini yapar.</li>
                 </ul>
-                <div class="ref-box">Kaynak: Akaid Kitapları</div>
+                <div class="ref-box">Kaynak: Cebrail hadisi (Buhârî ve Müslim)</div>
             </div></div>
         </div>
 
     </div>
 
+    <div class="empty-msg" id="empty-msg" data-i18n="empty_msg">Aramanıza uygun konu bulunamadı.</div>
+
 </div>
 
-<div class="footer">© Ayetin Vakti • <span>70+ Detaylı İlmihal Ansiklopedisi</span></div>
+<div class="footer"><span data-i18n="footer_copy">© Ayetin Vakti •</span> <span data-i18n="footer_span">İlmihal Kütüphanesi</span></div>
 
 <script>
     let currentActiveCategory = 'all';
 
+    // --- ARAYÜZ DİLİ (içerik Türkçe kalır) ---
+    const uiStrings = {
+        tr: {
+            page_title: "70+ Başlıklı İlmihal Kütüphanesi | Ayetin Vakti",
+            nav_title: "70+ Başlıklı İlmihal Kütüphanesi",
+            hero_badge: "Kaynaklı • Özet İlmihal",
+            hero_title: "70+ Başlıklı İlmihal Kütüphanesi",
+            hero_subtitle: "İtikat, İbadet, Temizlik, Güncel Fıkıh ve Aile Esasları",
+            disclaimer: "Bu sayfadaki bilgiler genel bilgilendirme amaçlı özetlerdir ve ağırlıklı olarak Hanefî mezhebine göredir. Özel durumlar ve güncel fetvalar için müftülüğe veya Diyanet Alo 190 Dini Bilgi Hattı'na danışınız.",
+            lang_note: "",
+            search_ph: "Konu ara (Örn: Abdest, Sehiv, Zekât, Nikâh)...",
+            cat_all: "Tümü (70+ Başlık)", cat_itikat: "İtikat & İman", cat_taharet: "Taharet & Abdest", cat_namaz: "Namaz Esasları",
+            cat_oruc: "Oruç & Hac", cat_guncel: "Güncel Fıkıh", cat_aile: "Aile & Hayat", cat_ahlak: "Ahlak & Günahlar",
+            empty_msg: "Aramanıza uygun konu bulunamadı.",
+            footer_copy: "© Ayetin Vakti •", footer_span: "İlmihal Kütüphanesi",
+            back_title: "Geri Dön", theme_title: "Tema Değiştir"
+        },
+        en: {
+            page_title: "70+ Topic Fiqh Library | Time of Ayah",
+            nav_title: "70+ Topic Fiqh Library",
+            hero_badge: "Sourced • Concise Catechism",
+            hero_title: "70+ Topic Fiqh Library",
+            hero_subtitle: "Creed, Worship, Purification, Contemporary Fiqh and Family",
+            disclaimer: "The information on this page is a general summary, mainly according to the Hanafi school. For personal situations and up-to-date rulings, please consult your local mufti or the Diyanet helpline (Alo 190).",
+            lang_note: "The topic content is currently available in Turkish only.",
+            search_ph: "Search topics (e.g. Abdest, Sehiv, Zakat, Nikah)...",
+            cat_all: "All (70+ Topics)", cat_itikat: "Creed & Faith", cat_taharet: "Purification & Wudu", cat_namaz: "Prayer",
+            cat_oruc: "Fasting & Hajj", cat_guncel: "Contemporary Fiqh", cat_aile: "Family & Life", cat_ahlak: "Ethics & Sins",
+            empty_msg: "No topics match your search.",
+            footer_copy: "© Time of Ayah •", footer_span: "Fiqh Library",
+            back_title: "Back", theme_title: "Toggle theme"
+        },
+        ar: {
+            page_title: "مكتبة الفقه (أكثر من 70 موضوعاً) | وقت الآية",
+            nav_title: "مكتبة الفقه (أكثر من 70 موضوعاً)",
+            hero_badge: "موثّق • علم الحال مختصراً",
+            hero_title: "مكتبة الفقه (أكثر من 70 موضوعاً)",
+            hero_subtitle: "العقيدة والعبادات والطهارة والفقه المعاصر والأسرة",
+            disclaimer: "المعلومات في هذه الصفحة ملخصات عامة وفق المذهب الحنفي في الغالب. للحالات الخاصة والفتاوى الحديثة يُرجى مراجعة المفتي أو خط الشؤون الدينية (Alo 190).",
+            lang_note: "محتوى المواضيع متوفر حالياً باللغة التركية فقط.",
+            search_ph: "ابحث عن موضوع (مثال: Abdest, Zekât, Nikâh)...",
+            cat_all: "الكل (أكثر من 70 موضوعاً)", cat_itikat: "العقيدة والإيمان", cat_taharet: "الطهارة والوضوء", cat_namaz: "الصلاة",
+            cat_oruc: "الصيام والحج", cat_guncel: "الفقه المعاصر", cat_aile: "الأسرة والحياة", cat_ahlak: "الأخلاق والذنوب",
+            empty_msg: "لا توجد مواضيع مطابقة لبحثك.",
+            footer_copy: "© وقت الآية •", footer_span: "مكتبة الفقه",
+            back_title: "رجوع", theme_title: "تغيير المظهر"
+        }
+    };
+
+    function applyUiLanguage() {
+        const lang = localStorage.getItem('user_lang') || 'tr';
+        const t = uiStrings[lang] || uiStrings.tr;
+        document.documentElement.lang = lang;
+        document.title = t.page_title;
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (key !== 'page_title' && t[key] !== undefined) el.textContent = t[key];
+        });
+        const ph = document.getElementById('search-input');
+        if (ph) ph.placeholder = t.search_ph;
+
+        const note = document.getElementById('lang-note');
+        if (note) note.style.display = t.lang_note ? 'block' : 'none';
+
+        const back = document.getElementById('back-btn');
+        if (back) back.title = t.back_title;
+        const themeBtn = document.getElementById('theme-btn');
+        if (themeBtn) themeBtn.title = t.theme_title;
+    }
+
+    // --- ARAMA: Türkçe karakterleri ve büyük/küçük harfi yok say ---
+    function normalize(s) {
+        return (s || '')
+            .toLocaleLowerCase('tr-TR')
+            .replace(/[âäà]/g, 'a').replace(/[îïì]/g, 'i').replace(/[ûüù]/g, 'u').replace(/[êé]/g, 'e')
+            .replace(/ç/g, 'c').replace(/ğ/g, 'g').replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ş/g, 's')
+            .replace(/[\u0300-\u036f]/g, '');
+    }
+
     function toggleCard(headerElement) {
         const card = headerElement.parentElement;
-        const isOpen = card.classList.contains('open');
-        
-        // Diğer açık kartları kapatmak istersen burayı açabilirsin, şimdilik bağımsız çalışıyor
-        card.classList.toggle('open', !isOpen);
+        card.classList.toggle('open');
     }
 
     function filterCategory(category, chipElement) {
@@ -1237,25 +1387,33 @@
     }
 
     function applyFilters() {
-        const query = document.getElementById('search-input').value.toLowerCase().trim();
+        const query = normalize(document.getElementById('search-input').value.trim());
         const cards = document.querySelectorAll('.topic-card');
+        let visible = 0;
 
         cards.forEach(card => {
             const category = card.getAttribute('data-category');
-            const keywords = card.getAttribute('data-keywords') || '';
-            const title = card.querySelector('.topic-title').innerText.toLowerCase();
-            const bodyText = card.querySelector('.topic-content-inner').innerText.toLowerCase();
+            if (!card._searchText) {
+                card._searchText = normalize(
+                    (card.getAttribute('data-keywords') || '') + ' ' +
+                    card.querySelector('.topic-title').textContent + ' ' +
+                    card.querySelector('.topic-content-inner').textContent
+                );
+            }
 
             const matchesCategory = (currentActiveCategory === 'all' || category === currentActiveCategory);
-            const matchesQuery = (query === '' || title.includes(query) || bodyText.includes(query) || keywords.includes(query));
+            const matchesQuery = (query === '' || card._searchText.includes(query));
 
             if (matchesCategory && matchesQuery) {
                 card.style.display = 'block';
+                visible++;
             } else {
                 card.style.display = 'none';
                 card.classList.remove('open');
             }
         });
+
+        document.getElementById('empty-msg').style.display = visible === 0 ? 'block' : 'none';
     }
 
     function initTheme() {
@@ -1283,6 +1441,7 @@
 
     window.onload = () => {
         initTheme();
+        applyUiLanguage();
     };
 </script>
 </body>
