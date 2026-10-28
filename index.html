@@ -5,36 +5,47 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="page_title">70+ Başlıklı İlmihal Kütüphanesi | Ayetin Vakti</title>
-    <meta name="theme-color" content="#10b981">
+    <meta name="theme-color" content="#0f172a">
     
     <script>
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        if (savedTheme === 'light') {
-            document.documentElement.setAttribute('data-theme', 'light');
-        } else {
-            document.documentElement.removeAttribute('data-theme');
-        }
+        // Tema, özel renk paleti ve dil (titremeyi önlemek için en başta çalışır)
+        (function () {
+            const d = document.documentElement;
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isLight = savedTheme === 'light' || (!savedTheme && !systemPrefersDark);
+            if (isLight) d.classList.add('light-mode');
+            const a = localStorage.getItem('custom_accent');
+            const t = localStorage.getItem('custom_text');
+            const b = localStorage.getItem('custom_bg');
+            if (a) d.style.setProperty('--accent-color', a);
+            if (t) d.style.setProperty('--text-color', t);
+            if (b) {
+                d.style.setProperty('--bg-color', b);
+                d.style.setProperty('--card-bg', b);
+            }
+            // Özel arka plan var, yazı rengi seçilmemişse okunabilir renkleri zeminin açıklığına göre seç
+            if (b && !t) {
+                const m = /^#([0-9a-f]{6})$/i.exec(b.trim());
+                if (m) {
+                    const n = parseInt(m[1], 16);
+                    const lin = c => { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+                    const L = 0.2126 * lin(n >> 16) + 0.7152 * lin((n >> 8) & 255) + 0.0722 * lin(n & 255);
+                    const bgIsLight = L > 0.18;
+                    d.style.setProperty('--text-color', bgIsLight ? '#0f172a' : '#f8fafc');
+                    d.style.setProperty('--text-muted', bgIsLight ? '#475569' : '#cbd5e1');
+                    d.style.setProperty('--border-color', bgIsLight ? 'rgba(15,23,42,0.18)' : 'rgba(248,250,252,0.22)');
+                }
+            }
+            // Safari üst/alt çubuğu sayfa zemin rengine uysun
+            const meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute('content', b || (isLight ? '#f1f5f9' : '#0f172a'));
 
-        const savedAccent = localStorage.getItem('custom_accent');
-        const savedText = localStorage.getItem('custom_text');
-
-        if (savedAccent) document.documentElement.style.setProperty('--accent-color', savedAccent);
-        if (savedText) document.documentElement.style.setProperty('--text-color', savedText);
-
-        const savedBg = localStorage.getItem('custom_bg');
-        if (savedBg && savedTheme !== 'light') {
-            document.documentElement.style.setProperty('--bg-color', savedBg);
-            document.documentElement.style.setProperty('--card-bg', savedBg);
-        }
-
-        const currentLang = localStorage.getItem('user_lang') || 'tr';
-        if (currentLang === 'ar') {
-            document.documentElement.setAttribute('dir', 'rtl');
-        } else {
-            document.documentElement.setAttribute('dir', 'ltr');
-        }
+            // Dil yönü
+            d.setAttribute('dir', (localStorage.getItem('user_lang') || 'tr') === 'ar' ? 'rtl' : 'ltr');
+        })();
     </script>
 
     <style>
@@ -50,20 +61,25 @@
             --btn-hover: rgba(255, 255, 255, 0.1);
             --shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
             --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color-scheme: dark;
         }
 
-        [data-theme="light"] {
-            --bg-color: #f1f5f9 !important;
-            --card-bg: #ffffff !important;
-            --accent-color: #059669 !important;
-            --accent-hover: #047857 !important;
-            --text-color: #0f172a !important;
-            --text-muted: #64748b !important;
-            --border-color: #cbd5e1 !important;
-            --btn-bg: #f8fafc !important;
-            --btn-hover: #e2e8f0 !important;
-            --shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+        html.light-mode {
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --accent-color: #059669;
+            --accent-hover: #047857;
+            --text-color: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #cbd5e1;
+            --btn-bg: #f8fafc;
+            --btn-hover: #e2e8f0;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            color-scheme: light;
         }
+
+        /* Tuşlara ard arda basınca sayfa yakınlaşmasın */
+        html, body, button, a, select, input, label, [onclick] { touch-action: manipulation; }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         body { font-family: var(--font-family); background-color: var(--bg-color); color: var(--text-color); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 16px; transition: background-color 0.3s ease, color 0.3s ease; }
@@ -74,12 +90,14 @@
         [dir="rtl"] .navbar { flex-direction: row-reverse; }
 
         .circle-btn { width: 42px; height: 42px; border-radius: 50%; background: var(--btn-bg); border: 1px solid var(--border-color); color: var(--text-color); display: flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none; font-size: 1.2rem; transition: 0.2s; }
-        .circle-btn:hover { border-color: var(--accent-color); color: var(--accent-color); background: var(--btn-hover); }
+        @media (hover: hover) {
+            .circle-btn:hover { border-color: var(--accent-color); color: var(--accent-color); background: var(--btn-hover); }
+        }
         
         .app-title { font-size: 0.95rem; font-weight: 700; color: var(--accent-color); text-align: center; display: flex; align-items: center; gap: 6px; }
 
         /* Hero Banner */
-        .ilmihal-hero { background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), var(--card-bg)); border: 1px solid var(--border-color); border-radius: 20px; padding: 22px; text-align: center; position: relative; overflow: hidden; box-shadow: var(--shadow); }
+        .ilmihal-hero { background: linear-gradient(135deg, color-mix(in srgb, var(--accent-color) 15%, transparent), var(--card-bg)); border: 1px solid var(--border-color); border-radius: 20px; padding: 22px; text-align: center; position: relative; overflow: hidden; box-shadow: var(--shadow); }
         .hero-badge { display: inline-block; background: var(--btn-bg); border: 1px solid var(--border-color); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: var(--accent-color); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; }
         .hero-title { font-size: 1.25rem; font-weight: 800; color: var(--text-color); margin-bottom: 4px; }
         .hero-subtitle { font-size: 0.83rem; color: var(--text-muted); }
@@ -96,14 +114,19 @@
         .categories-scroll { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
         .categories-scroll::-webkit-scrollbar { display: none; }
         .cat-chip { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 16px; border-radius: 20px; font-size: 0.83rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: 0.2s; }
-        .cat-chip:hover, .cat-chip.active { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+        .cat-chip.active { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+        @media (hover: hover) {
+            .cat-chip:hover { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+        }
 
         /* İçerik / Madde Listesi (Akordeon Kartlar) */
         .topics-list { display: flex; flex-direction: column; gap: 10px; }
         
         .topic-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: 0.2s; }
         .topic-header { padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; gap: 10px; user-select: none; }
-        .topic-header:hover { background: var(--btn-hover); }
+        @media (hover: hover) {
+            .topic-header:hover { background: var(--btn-hover); }
+        }
         
         .topic-info { display: flex; flex-direction: column; gap: 3px; }
         .topic-category-tag { font-size: 0.68rem; font-weight: 700; color: var(--accent-color); text-transform: uppercase; letter-spacing: 0.5px; }
@@ -119,7 +142,7 @@
         .topic-content-inner p { color: var(--text-color); }
         .topic-content-inner ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
         .topic-content-inner li { color: var(--text-color); }
-        .ref-box { background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-color); padding: 10px 14px; border-radius: 0 8px 8px 0; font-size: 0.81rem; color: var(--text-muted); margin-top: 6px; font-weight: 600; }
+        .ref-box { background: color-mix(in srgb, var(--accent-color) 10%, transparent); border-left: 4px solid var(--accent-color); padding: 10px 14px; border-radius: 0 8px 8px 0; font-size: 0.81rem; color: var(--text-muted); margin-top: 6px; font-weight: 600; }
         [dir="rtl"] .ref-box { border-left: none; border-right: 4px solid var(--accent-color); border-radius: 8px 0 0 8px; }
 
         /* Bilgi notu ve boş sonuç mesajı */
@@ -137,7 +160,7 @@
     <header class="navbar">
         <a href="../" class="circle-btn" id="back-btn" title="Geri Dön">←</a>
         <div class="app-title">📖 <span data-i18n="nav_title">70+ Başlıklı İlmihal Kütüphanesi</span></div>
-        <button class="circle-btn" onclick="toggleTheme()" id="theme-btn" title="Tema Değiştir">☀️</button>
+        <button class="circle-btn" onclick="toggleTheme()" id="theme-btn" title="Tema Değiştir">🌙</button>
     </header>
 
     <!-- Hero Banner -->
@@ -1416,27 +1439,30 @@
         document.getElementById('empty-msg').style.display = visible === 0 ? 'block' : 'none';
     }
 
+    // --- TEMA YÖNETİMİ ---
+    function updateThemeIcon() {
+        const btn = document.getElementById('theme-btn');
+        if (btn) btn.textContent = document.documentElement.classList.contains('light-mode') ? '☀️' : '🌙';
+    }
+
+    // Safari üst/alt çubuğu sayfa zemin rengine uysun
+    function updateThemeColor() {
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (!meta) return;
+        const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg-color').trim();
+        if (bg) meta.setAttribute('content', bg);
+    }
+
     function initTheme() {
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        applyTheme(savedTheme);
+        updateThemeIcon();
+        updateThemeColor();
     }
 
     function toggleTheme() {
-        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-        applyTheme(isLight ? 'dark' : 'light');
-    }
-
-    function applyTheme(theme) {
-        const btn = document.getElementById('theme-btn');
-        if (theme === 'light') {
-            document.documentElement.setAttribute('data-theme', 'light');
-            if (btn) btn.innerHTML = '🌙'; 
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.documentElement.removeAttribute('data-theme');
-            if (btn) btn.innerHTML = '☀️'; 
-            localStorage.setItem('theme', 'dark');
-        }
+        const isLight = document.documentElement.classList.toggle('light-mode');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        updateThemeIcon();
+        updateThemeColor();
     }
 
     window.onload = () => {
