@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <script src="https://ayetinvakti.github.io/finish.js?v=5"></script>
     <script src="https://ayetinvakti.github.io/menu.js" defer></script>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
@@ -159,12 +160,12 @@
 
 <div class="container">
     <!-- Navbar -->
-    <header class="navbar">
+    <header class="navbar fin-card">
         <div class="nav-group">
-            <a href="https://ayetinvakti.github.io/" class="circle-btn" id="back-btn" title="Geri Dön" aria-label="Geri Dön">←</a>
-            <button class="circle-btn" data-drawer-toggle aria-label="Menü" aria-controls="avmDrawer" title="Menü">☰</button>
+            <a href="https://ayetinvakti.github.io/" class="circle-btn fin-btn" id="back-btn" title="Geri Dön" aria-label="Geri Dön">←</a>
+            <button class="circle-btn fin-btn" data-drawer-toggle aria-label="Menü" aria-controls="avmDrawer" title="Menü">☰</button>
         </div>
-        <button class="circle-btn" onclick="toggleTheme()" id="theme-btn" title="Tema Değiştir">🌙</button>
+        <button class="circle-btn fin-btn" onclick="toggleTheme()" id="theme-btn" title="Tema Değiştir">🌙</button>
     </header>
     <h1 class="app-title">📖 <span data-i18n="nav_title">İlmihal Kütüphanesi</span></h1>
 
@@ -187,21 +188,21 @@
 
     <!-- Kategori Filtreleri -->
     <div class="categories-scroll" id="category-filters">
-        <button class="cat-chip active" onclick="filterCategory('all', this)" data-i18n="cat_all">Tümü</button>
-        <button class="cat-chip" onclick="filterCategory('itikat', this)" data-i18n="cat_itikat">İtikat &amp; İman</button>
-        <button class="cat-chip" onclick="filterCategory('taharet', this)" data-i18n="cat_taharet">Taharet &amp; Abdest</button>
-        <button class="cat-chip" onclick="filterCategory('namaz', this)" data-i18n="cat_namaz">Namaz Esasları</button>
-        <button class="cat-chip" onclick="filterCategory('oruc', this)" data-i18n="cat_oruc">Oruç &amp; Hac</button>
-        <button class="cat-chip" onclick="filterCategory('guncel', this)" data-i18n="cat_guncel">Güncel Fıkıh</button>
-        <button class="cat-chip" onclick="filterCategory('aile', this)" data-i18n="cat_aile">Aile &amp; Hayat</button>
-        <button class="cat-chip" onclick="filterCategory('ahlak', this)" data-i18n="cat_ahlak">Ahlak &amp; Günahlar</button>
+        <button class="cat-chip active fin-btn" onclick="filterCategory('all', this)" data-i18n="cat_all">Tümü</button>
+        <button class="cat-chip fin-btn" onclick="filterCategory('itikat', this)" data-i18n="cat_itikat">İtikat &amp; İman</button>
+        <button class="cat-chip fin-btn" onclick="filterCategory('taharet', this)" data-i18n="cat_taharet">Taharet &amp; Abdest</button>
+        <button class="cat-chip fin-btn" onclick="filterCategory('namaz', this)" data-i18n="cat_namaz">Namaz Esasları</button>
+        <button class="cat-chip fin-btn" onclick="filterCategory('oruc', this)" data-i18n="cat_oruc">Oruç &amp; Hac</button>
+        <button class="cat-chip fin-btn" onclick="filterCategory('guncel', this)" data-i18n="cat_guncel">Güncel Fıkıh</button>
+        <button class="cat-chip fin-btn" onclick="filterCategory('aile', this)" data-i18n="cat_aile">Aile &amp; Hayat</button>
+        <button class="cat-chip fin-btn" onclick="filterCategory('ahlak', this)" data-i18n="cat_ahlak">Ahlak &amp; Günahlar</button>
     </div>
 
     <!-- Konular (içerik Türkçedir; Arapça arayüzde bile soldan sağa okunur) -->
     <div class="topics-list" id="topics-container" lang="tr" dir="ltr">
 
         <!-- 1 -->
-        <div class="topic-card" data-category="itikat" data-keywords="1 imanin ve islam'in sartlari iman islam sartlari kelimei tevhid">
+        <div class="topic-card fin-card" data-category="itikat" data-keywords="1 imanin ve islam'in sartlari iman islam sartlari kelimei tevhid">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">1. İmanın ve İslam'ın Şartları</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -216,7 +217,7 @@
         </div>
 
         <!-- 2 -->
-        <div class="topic-card" data-category="itikat" data-keywords="2 buyuk gunah isleyen kimse dinden cikar mi? buyuk gunah fasik ehlisunnet">
+        <div class="topic-card fin-card" data-category="itikat" data-keywords="2 buyuk gunah isleyen kimse dinden cikar mi? buyuk gunah fasik ehlisunnet">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">2. Büyük Günah İşleyen Kimse Dinden Çıkar mı?</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -232,7 +233,7 @@
         </div>
 
         <!-- 3 -->
-        <div class="topic-card" data-category="itikat" data-keywords="3 kaza, kader ve cuz'i irade kaza kader irade cuzi kulli">
+        <div class="topic-card fin-card" data-category="itikat" data-keywords="3 kaza, kader ve cuz'i irade kaza kader irade cuzi kulli">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">3. Kaza, Kader ve Cüz'î İrade</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -248,7 +249,7 @@
         </div>
 
         <!-- 4 -->
-        <div class="topic-card" data-category="itikat" data-keywords="4 kelime-i sehadet ve kelime-i tevhid'in manasi kelimei sehadet tevhid esehedu">
+        <div class="topic-card fin-card" data-category="itikat" data-keywords="4 kelime-i sehadet ve kelime-i tevhid'in manasi kelimei sehadet tevhid esehedu">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">4. Kelime-i Şehadet ve Kelime-i Tevhid'in Manası</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -263,7 +264,7 @@
         </div>
 
         <!-- 5 -->
-        <div class="topic-card" data-category="itikat" data-keywords="5 peygamberlere iman ve peygamberlerin sifatlari peygamber sifatlari ismet sidk emanet fetanet teblig">
+        <div class="topic-card fin-card" data-category="itikat" data-keywords="5 peygamberlere iman ve peygamberlerin sifatlari peygamber sifatlari ismet sidk emanet fetanet teblig">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">5. Peygamberlere İman ve Peygamberlerin Sıfatları</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -281,7 +282,7 @@
         </div>
 
         <!-- 6 -->
-        <div class="topic-card" data-category="itikat" data-keywords="6 ahiret hayati, kabir suali ve berzah alemi ahiret berzah kabir azabi munker nekir">
+        <div class="topic-card fin-card" data-category="itikat" data-keywords="6 ahiret hayati, kabir suali ve berzah alemi ahiret berzah kabir azabi munker nekir">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">6. Ahiret Hayatı, Kabir Suali ve Berzah Âlemi</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -296,7 +297,7 @@
         </div>
 
         <!-- 7 -->
-        <div class="topic-card" data-category="itikat" data-keywords="7 meleklerin yaratilisi ve gorevleri melekler cebrail mikail israfil azrail nur">
+        <div class="topic-card fin-card" data-category="itikat" data-keywords="7 meleklerin yaratilisi ve gorevleri melekler cebrail mikail israfil azrail nur">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">7. Meleklerin Yaratılışı ve Görevleri</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -313,7 +314,7 @@
         </div>
 
         <!-- 8 -->
-        <div class="topic-card" data-category="itikat" data-keywords="8 ilahi kitaplar ve kur'an-i kerim'in ustunlugu ilahi kitaplar tevrat zebur incil kuran tahrif">
+        <div class="topic-card fin-card" data-category="itikat" data-keywords="8 ilahi kitaplar ve kur'an-i kerim'in ustunlugu ilahi kitaplar tevrat zebur incil kuran tahrif">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">8. İlahi Kitaplar ve Kur'an-ı Kerim'in Üstünlüğü</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -329,7 +330,7 @@
         </div>
 
         <!-- 9 -->
-        <div class="topic-card" data-category="itikat" data-keywords="9 bid'at ve hurafelerin dindeki yeri bidat hurafe nazar boncugu">
+        <div class="topic-card fin-card" data-category="itikat" data-keywords="9 bid'at ve hurafelerin dindeki yeri bidat hurafe nazar boncugu">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">9. Bid'at ve Hurafelerin Dindeki Yeri</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -345,7 +346,7 @@
         </div>
 
         <!-- 10 -->
-        <div class="topic-card" data-category="itikat" data-keywords="10 gercek tovbe ve istigfarin sartlari tovbe istigfar nasuh">
+        <div class="topic-card fin-card" data-category="itikat" data-keywords="10 gercek tovbe ve istigfarin sartlari tovbe istigfar nasuh">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">10. Gerçek Tövbe ve İstiğfarın Şartları</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -363,7 +364,7 @@
         </div>
 
         <!-- 11 -->
-        <div class="topic-card" data-category="itikat" data-keywords="11 ehl-i sunnet ve'l-cemaat yolu nedir? ehli sunnet cemaat maturidi esari">
+        <div class="topic-card fin-card" data-category="itikat" data-keywords="11 ehl-i sunnet ve'l-cemaat yolu nedir? ehli sunnet cemaat maturidi esari">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">İtikat &amp; İman</span><span class="topic-title">11. Ehl-i Sünnet ve'l-Cemaat Yolu Nedir?</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -378,7 +379,7 @@
         </div>
 
         <!-- 12 -->
-        <div class="topic-card" data-category="taharet" data-keywords="12 abdestin farzlari ve alinis usulu abdest farz alinis usulu">
+        <div class="topic-card fin-card" data-category="taharet" data-keywords="12 abdestin farzlari ve alinis usulu abdest farz alinis usulu">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">12. Abdestin Farzları ve Alınış Usulü</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -396,7 +397,7 @@
         </div>
 
         <!-- 13 -->
-        <div class="topic-card" data-category="taharet" data-keywords="13 abdesti bozan durumlar nelerdir? abdesti bozan haller kan irin kusmak uyku">
+        <div class="topic-card fin-card" data-category="taharet" data-keywords="13 abdesti bozan durumlar nelerdir? abdesti bozan haller kan irin kusmak uyku">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">13. Abdesti Bozan Durumlar Nelerdir?</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -415,7 +416,7 @@
         </div>
 
         <!-- 14 -->
-        <div class="topic-card" data-category="taharet" data-keywords="14 gusul (boy abdesti) nasil alinir? gusul boy abdesti cunup mazmaza istinsak">
+        <div class="topic-card fin-card" data-category="taharet" data-keywords="14 gusul (boy abdesti) nasil alinir? gusul boy abdesti cunup mazmaza istinsak">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">14. Gusül (Boy Abdesti) Nasıl Alınır?</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -431,7 +432,7 @@
         </div>
 
         <!-- 15 -->
-        <div class="topic-card" data-category="taharet" data-keywords="15 teyemmum nasil yapilir? teyemmum toprak su yok">
+        <div class="topic-card fin-card" data-category="taharet" data-keywords="15 teyemmum nasil yapilir? teyemmum toprak su yok">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">15. Teyemmüm Nasıl Yapılır?</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -448,7 +449,7 @@
         </div>
 
         <!-- 16 -->
-        <div class="topic-card" data-category="taharet" data-keywords="16 mestler ve corap uzerine mesh mesh corap mest sure">
+        <div class="topic-card fin-card" data-category="taharet" data-keywords="16 mestler ve corap uzerine mesh mesh corap mest sure">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">16. Mestler ve Çorap Üzerine Mesh</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -466,7 +467,7 @@
         </div>
 
         <!-- 17 -->
-        <div class="topic-card" data-category="taharet" data-keywords="17 istibra ve istinca (tuvalet temizligi) istibra istinca tuvalet temizlik">
+        <div class="topic-card fin-card" data-category="taharet" data-keywords="17 istibra ve istinca (tuvalet temizligi) istibra istinca tuvalet temizlik">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">17. İstibra ve İstinca (Tuvalet Temizliği)</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -482,7 +483,7 @@
         </div>
 
         <!-- 18 -->
-        <div class="topic-card" data-category="taharet" data-keywords="18 hayiz (adet) ve nifas (lohusalik) hali hayiz nifas adet lohusa">
+        <div class="topic-card fin-card" data-category="taharet" data-keywords="18 hayiz (adet) ve nifas (lohusalik) hali hayiz nifas adet lohusa">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">18. Hayız (Adet) ve Nifas (Lohusalık) Hâli</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -499,7 +500,7 @@
         </div>
 
         <!-- 19 -->
-        <div class="topic-card" data-category="taharet" data-keywords="19 necasetten taharet (beden, elbise ve yer temizligi) necaset taharet temizlik">
+        <div class="topic-card fin-card" data-category="taharet" data-keywords="19 necasetten taharet (beden, elbise ve yer temizligi) necaset taharet temizlik">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">19. Necasetten Taharet (Beden, Elbise ve Yer Temizliği)</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -514,7 +515,7 @@
         </div>
 
         <!-- 20 -->
-        <div class="topic-card" data-category="taharet" data-keywords="20 misvak kullanmanin sunneti misvak sunnet agiz temizligi">
+        <div class="topic-card fin-card" data-category="taharet" data-keywords="20 misvak kullanmanin sunneti misvak sunnet agiz temizligi">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">20. Misvak Kullanmanın Sünneti</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -529,7 +530,7 @@
         </div>
 
         <!-- 21 -->
-        <div class="topic-card" data-category="taharet" data-keywords="21 temiz su cesitleri ve hukumleri su cesitleri mutlak su abdest">
+        <div class="topic-card fin-card" data-category="taharet" data-keywords="21 temiz su cesitleri ve hukumleri su cesitleri mutlak su abdest">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Taharet &amp; Abdest</span><span class="topic-title">21. Temiz Su Çeşitleri ve Hükümleri</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -545,7 +546,7 @@
         </div>
 
         <!-- 22 -->
-        <div class="topic-card" data-category="namaz" data-keywords="22 bes vakit namazin rekat dagilimi bes vakit namaz rekat">
+        <div class="topic-card fin-card" data-category="namaz" data-keywords="22 bes vakit namazin rekat dagilimi bes vakit namaz rekat">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">22. Beş Vakit Namazın Rekât Dağılımı</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -564,7 +565,7 @@
         </div>
 
         <!-- 23 -->
-        <div class="topic-card" data-category="namaz" data-keywords="23 namazin 12 farzi (sartlari ve rukunleri) namaz farzlari sartlari rukunleri 12 farz">
+        <div class="topic-card fin-card" data-category="namaz" data-keywords="23 namazin 12 farzi (sartlari ve rukunleri) namaz farzlari sartlari rukunleri 12 farz">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">23. Namazın 12 Farzı (Şartları ve Rükünleri)</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -579,7 +580,7 @@
         </div>
 
         <!-- 24 -->
-        <div class="topic-card" data-category="namaz" data-keywords="24 namazi bozan durumlar nelerdir? namazi bozan haller konusmak gulmek">
+        <div class="topic-card fin-card" data-category="namaz" data-keywords="24 namazi bozan durumlar nelerdir? namazi bozan haller konusmak gulmek">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">24. Namazı Bozan Durumlar Nelerdir?</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -598,7 +599,7 @@
         </div>
 
         <!-- 25 -->
-        <div class="topic-card" data-category="namaz" data-keywords="25 sehiv secdesi ne zaman ve nasil yapilir? sehiv secdesi yanilma">
+        <div class="topic-card fin-card" data-category="namaz" data-keywords="25 sehiv secdesi ne zaman ve nasil yapilir? sehiv secdesi yanilma">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">25. Sehiv Secdesi Ne Zaman ve Nasıl Yapılır?</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -615,7 +616,7 @@
         </div>
 
         <!-- 26 -->
-        <div class="topic-card" data-category="namaz" data-keywords="26 cuma namazinin sartlari cuma namazi hutbe sartlari">
+        <div class="topic-card fin-card" data-category="namaz" data-keywords="26 cuma namazinin sartlari cuma namazi hutbe sartlari">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">26. Cuma Namazının Şartları</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -631,7 +632,7 @@
         </div>
 
         <!-- 27 -->
-        <div class="topic-card" data-category="namaz" data-keywords="27 cenaze namazi nasil kilinir? cenaze namazi tekbir">
+        <div class="topic-card fin-card" data-category="namaz" data-keywords="27 cenaze namazi nasil kilinir? cenaze namazi tekbir">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">27. Cenaze Namazı Nasıl Kılınır?</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -648,7 +649,7 @@
         </div>
 
         <!-- 28 -->
-        <div class="topic-card" data-category="namaz" data-keywords="28 vitir namazi ve kunut dualari vitir namazi kunut dualari">
+        <div class="topic-card fin-card" data-category="namaz" data-keywords="28 vitir namazi ve kunut dualari vitir namazi kunut dualari">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">28. Vitir Namazı ve Kunut Duaları</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -664,7 +665,7 @@
         </div>
 
         <!-- 29 -->
-        <div class="topic-card" data-category="namaz" data-keywords="29 yolculuk (sefer) ve namazlarin kisaltilmasi sefer yolcu kasr namaz kisaltma">
+        <div class="topic-card fin-card" data-category="namaz" data-keywords="29 yolculuk (sefer) ve namazlarin kisaltilmasi sefer yolcu kasr namaz kisaltma">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">29. Yolculuk (Sefer) ve Namazların Kısaltılması</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -679,7 +680,7 @@
         </div>
 
         <!-- 30 -->
-        <div class="topic-card" data-category="namaz" data-keywords="30 teravih namazinin hukmu ve rekatlari teravih namazi rekat ramazan">
+        <div class="topic-card fin-card" data-category="namaz" data-keywords="30 teravih namazinin hukmu ve rekatlari teravih namazi rekat ramazan">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">30. Teravih Namazının Hükmü ve Rekâtları</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -693,7 +694,7 @@
         </div>
 
         <!-- 31 -->
-        <div class="topic-card" data-category="namaz" data-keywords="31 kaza namazlari nasil kilinir? kaza namazlari borc ode">
+        <div class="topic-card fin-card" data-category="namaz" data-keywords="31 kaza namazlari nasil kilinir? kaza namazlari borc ode">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">31. Kaza Namazları Nasıl Kılınır?</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -708,7 +709,7 @@
         </div>
 
         <!-- 32 -->
-        <div class="topic-card" data-category="oruc" data-keywords="32 orucu bozan, kaza ve kefaret gerektiren haller orucu bozan kaza kefaret 60 gun">
+        <div class="topic-card fin-card" data-category="oruc" data-keywords="32 orucu bozan, kaza ve kefaret gerektiren haller orucu bozan kaza kefaret 60 gun">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">32. Orucu Bozan, Kaza ve Kefaret Gerektiren Haller</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -724,7 +725,7 @@
         </div>
 
         <!-- 33 -->
-        <div class="topic-card" data-category="oruc" data-keywords="33 sahurun onemi ve imsak vakti sahur imsak oruc baslangic">
+        <div class="topic-card fin-card" data-category="oruc" data-keywords="33 sahurun onemi ve imsak vakti sahur imsak oruc baslangic">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">33. Sahurun Önemi ve İmsak Vakti</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -739,7 +740,7 @@
         </div>
 
         <!-- 34 -->
-        <div class="topic-card" data-category="oruc" data-keywords="34 oruc tutamayanlar ve fidye fidye oruc tutamayan yasli hasta">
+        <div class="topic-card fin-card" data-category="oruc" data-keywords="34 oruc tutamayanlar ve fidye fidye oruc tutamayan yasli hasta">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">34. Oruç Tutamayanlar ve Fidye</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -754,7 +755,7 @@
         </div>
 
         <!-- 35 -->
-        <div class="topic-card" data-category="oruc" data-keywords="35 zekat kimlere farzdir, nisap miktari nedir? zekat nisap altin oran">
+        <div class="topic-card fin-card" data-category="oruc" data-keywords="35 zekat kimlere farzdir, nisap miktari nedir? zekat nisap altin oran">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">35. Zekât Kimlere Farzdır, Nisap Miktarı Nedir?</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -769,7 +770,7 @@
         </div>
 
         <!-- 36 -->
-        <div class="topic-card" data-category="oruc" data-keywords="36 haccin farzlari hac farzlari ihram vakfe arafat tavaf">
+        <div class="topic-card fin-card" data-category="oruc" data-keywords="36 haccin farzlari hac farzlari ihram vakfe arafat tavaf">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">36. Haccın Farzları</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -785,7 +786,7 @@
         </div>
 
         <!-- 37 -->
-        <div class="topic-card" data-category="oruc" data-keywords="37 kurban kesmenin hukmu ve sartlari kurban kesmek sartlari hisse">
+        <div class="topic-card fin-card" data-category="oruc" data-keywords="37 kurban kesmenin hukmu ve sartlari kurban kesmek sartlari hisse">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">37. Kurban Kesmenin Hükmü ve Şartları</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -800,7 +801,7 @@
         </div>
 
         <!-- 38 -->
-        <div class="topic-card" data-category="oruc" data-keywords="38 sadaka-i fitir (fitre) kimlere verilir? fitre sadaka fitir bayram">
+        <div class="topic-card fin-card" data-category="oruc" data-keywords="38 sadaka-i fitir (fitre) kimlere verilir? fitre sadaka fitir bayram">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">38. Sadaka-i Fıtır (Fitre) Kimlere Verilir?</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -815,7 +816,7 @@
         </div>
 
         <!-- 39 -->
-        <div class="topic-card" data-category="oruc" data-keywords="39 itikaf ibadeti itikaf camide kalmak ramazan">
+        <div class="topic-card fin-card" data-category="oruc" data-keywords="39 itikaf ibadeti itikaf camide kalmak ramazan">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">39. İtikâf İbadeti</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -830,7 +831,7 @@
         </div>
 
         <!-- 40 -->
-        <div class="topic-card" data-category="oruc" data-keywords="40 umre ibadeti ve yapilisi umre ibadeti ihram tavaf say">
+        <div class="topic-card fin-card" data-category="oruc" data-keywords="40 umre ibadeti ve yapilisi umre ibadeti ihram tavaf say">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">40. Umre İbadeti ve Yapılışı</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -846,7 +847,7 @@
         </div>
 
         <!-- 41 -->
-        <div class="topic-card" data-category="oruc" data-keywords="41 hac ve umrede ceza kurbanlari ceza kurbani dem ihram yasaklari">
+        <div class="topic-card fin-card" data-category="oruc" data-keywords="41 hac ve umrede ceza kurbanlari ceza kurbani dem ihram yasaklari">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">41. Hac ve Umrede Ceza Kurbanları</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -860,7 +861,7 @@
         </div>
 
         <!-- 42 -->
-        <div class="topic-card" data-category="guncel" data-keywords="42 asi ve igne orucu bozar mi? asi igne serum oruc">
+        <div class="topic-card fin-card" data-category="guncel" data-keywords="42 asi ve igne orucu bozar mi? asi igne serum oruc">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">42. Aşı ve İğne Orucu Bozar mı?</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -876,7 +877,7 @@
         </div>
 
         <!-- 43 -->
-        <div class="topic-card" data-category="guncel" data-keywords="43 dis tedavisi oruca zarar verir mi? dis tedavisi dolgu cekim oruc">
+        <div class="topic-card fin-card" data-category="guncel" data-keywords="43 dis tedavisi oruca zarar verir mi? dis tedavisi dolgu cekim oruc">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">43. Diş Tedavisi Oruca Zarar Verir mi?</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -891,7 +892,7 @@
         </div>
 
         <!-- 44 -->
-        <div class="topic-card" data-category="guncel" data-keywords="44 kan vermek veya hacamat yaptirmak kan vermek hacamat abdest oruc">
+        <div class="topic-card fin-card" data-category="guncel" data-keywords="44 kan vermek veya hacamat yaptirmak kan vermek hacamat abdest oruc">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">44. Kan Vermek veya Hacamat Yaptırmak</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -905,7 +906,7 @@
         </div>
 
         <!-- 45 -->
-        <div class="topic-card" data-category="guncel" data-keywords="45 kripto para ticareti hakkinda gorusler kripto bitcoin ticaret caiz">
+        <div class="topic-card fin-card" data-category="guncel" data-keywords="45 kripto para ticareti hakkinda gorusler kripto bitcoin ticaret caiz">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">45. Kripto Para Ticareti Hakkında Görüşler</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -920,7 +921,7 @@
         </div>
 
         <!-- 46 -->
-        <div class="topic-card" data-category="guncel" data-keywords="46 organ bagisi ve organ nakli organ bagisi nakli">
+        <div class="topic-card fin-card" data-category="guncel" data-keywords="46 organ bagisi ve organ nakli organ bagisi nakli">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">46. Organ Bağışı ve Organ Nakli</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -936,7 +937,7 @@
         </div>
 
         <!-- 47 -->
-        <div class="topic-card" data-category="guncel" data-keywords="47 sigorta cesitleri ve katilim sigortaciligi sigorta kasko hayat katilim tekaful">
+        <div class="topic-card fin-card" data-category="guncel" data-keywords="47 sigorta cesitleri ve katilim sigortaciligi sigorta kasko hayat katilim tekaful">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">47. Sigorta Çeşitleri ve Katılım Sigortacılığı</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -950,7 +951,7 @@
         </div>
 
         <!-- 48 -->
-        <div class="topic-card" data-category="guncel" data-keywords="48 banka faizi ve finansal islemlerin hukmu faiz riba banka kredi">
+        <div class="topic-card fin-card" data-category="guncel" data-keywords="48 banka faizi ve finansal islemlerin hukmu faiz riba banka kredi">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">48. Banka Faizi ve Finansal İşlemlerin Hükmü</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -965,7 +966,7 @@
         </div>
 
         <!-- 49 -->
-        <div class="topic-card" data-category="guncel" data-keywords="49 estetik ameliyatin sinirlari estetik ameliyat burun">
+        <div class="topic-card fin-card" data-category="guncel" data-keywords="49 estetik ameliyatin sinirlari estetik ameliyat burun">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">49. Estetik Ameliyatın Sınırları</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -980,7 +981,7 @@
         </div>
 
         <!-- 50 -->
-        <div class="topic-card" data-category="guncel" data-keywords="50 hazir gidalarda katki maddeleri ve jelatin gida katki jelatin e kodu helal">
+        <div class="topic-card fin-card" data-category="guncel" data-keywords="50 hazir gidalarda katki maddeleri ve jelatin gida katki jelatin e kodu helal">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">50. Hazır Gıdalarda Katkı Maddeleri ve Jelatin</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -995,7 +996,7 @@
         </div>
 
         <!-- 51 -->
-        <div class="topic-card" data-category="guncel" data-keywords="51 piyango, loto ve sans oyunlari piyango loto bahis kumar maysir">
+        <div class="topic-card fin-card" data-category="guncel" data-keywords="51 piyango, loto ve sans oyunlari piyango loto bahis kumar maysir">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Güncel Fıkıh</span><span class="topic-title">51. Piyango, Loto ve Şans Oyunları</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1009,7 +1010,7 @@
         </div>
 
         <!-- 52 -->
-        <div class="topic-card" data-category="aile" data-keywords="52 dini nikahin sartlari nikah sartlari dini nikah sahit">
+        <div class="topic-card fin-card" data-category="aile" data-keywords="52 dini nikahin sartlari nikah sartlari dini nikah sahit">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">52. Dinî Nikahın Şartları</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1027,7 +1028,7 @@
         </div>
 
         <!-- 53 -->
-        <div class="topic-card" data-category="aile" data-keywords="53 mehir nedir, cesitleri nelerdir? mehir muaccel mueccel">
+        <div class="topic-card fin-card" data-category="aile" data-keywords="53 mehir nedir, cesitleri nelerdir? mehir muaccel mueccel">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">53. Mehir Nedir, Çeşitleri Nelerdir?</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1042,7 +1043,7 @@
         </div>
 
         <!-- 54 -->
-        <div class="topic-card" data-category="aile" data-keywords="54 bosanma (talak) hukumleri talak bosanma iddet">
+        <div class="topic-card fin-card" data-category="aile" data-keywords="54 bosanma (talak) hukumleri talak bosanma iddet">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">54. Boşanma (Talak) Hükümleri</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1058,7 +1059,7 @@
         </div>
 
         <!-- 55 -->
-        <div class="topic-card" data-category="aile" data-keywords="55 sut kardesligi ve evlenme engelleri sut kardesligi evlenme engeli">
+        <div class="topic-card fin-card" data-category="aile" data-keywords="55 sut kardesligi ve evlenme engelleri sut kardesligi evlenme engeli">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">55. Süt Kardeşliği ve Evlenme Engelleri</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1072,7 +1073,7 @@
         </div>
 
         <!-- 56 -->
-        <div class="topic-card" data-category="aile" data-keywords="56 islam'da miras taksimi esaslari miras taksim pay veraset">
+        <div class="topic-card fin-card" data-category="aile" data-keywords="56 islam'da miras taksimi esaslari miras taksim pay veraset">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">56. İslam'da Miras Taksimi Esasları</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1088,7 +1089,7 @@
         </div>
 
         <!-- 57 -->
-        <div class="topic-card" data-category="aile" data-keywords="57 anne ve babaya iyilik anne baba itaat saygi">
+        <div class="topic-card fin-card" data-category="aile" data-keywords="57 anne ve babaya iyilik anne baba itaat saygi">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">57. Anne ve Babaya İyilik</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1104,7 +1105,7 @@
         </div>
 
         <!-- 58 -->
-        <div class="topic-card" data-category="aile" data-keywords="58 sila-i rahim (akraba haklarini gozetmek) sila i rahim akraba ziyaret">
+        <div class="topic-card fin-card" data-category="aile" data-keywords="58 sila-i rahim (akraba haklarini gozetmek) sila i rahim akraba ziyaret">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">58. Sıla-i Rahim (Akraba Haklarını Gözetmek)</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1118,7 +1119,7 @@
         </div>
 
         <!-- 59 -->
-        <div class="topic-card" data-category="aile" data-keywords="59 komsuluk haklari komsu haklari komsuluk">
+        <div class="topic-card fin-card" data-category="aile" data-keywords="59 komsuluk haklari komsu haklari komsuluk">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">59. Komşuluk Hakları</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1132,7 +1133,7 @@
         </div>
 
         <!-- 60 -->
-        <div class="topic-card" data-category="aile" data-keywords="60 yetimi gozetmek ve yetim hakki yetim hakki koruma">
+        <div class="topic-card fin-card" data-category="aile" data-keywords="60 yetimi gozetmek ve yetim hakki yetim hakki koruma">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">60. Yetimi Gözetmek ve Yetim Hakkı</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1147,7 +1148,7 @@
         </div>
 
         <!-- 61 -->
-        <div class="topic-card" data-category="aile" data-keywords="61 akika kurbani akika kurbani cocuk">
+        <div class="topic-card fin-card" data-category="aile" data-keywords="61 akika kurbani akika kurbani cocuk">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Aile &amp; Hayat</span><span class="topic-title">61. Akika Kurbanı</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1162,7 +1163,7 @@
         </div>
 
         <!-- 62 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="62 kul hakkinin agirligi ve helallesme kul hakki helallik helallesmek">
+        <div class="topic-card fin-card" data-category="ahlak" data-keywords="62 kul hakkinin agirligi ve helallesme kul hakki helallik helallesmek">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">62. Kul Hakkının Ağırlığı ve Helalleşme</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1177,7 +1178,7 @@
         </div>
 
         <!-- 63 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="63 giybet nedir? giybet arkadan konusmak">
+        <div class="topic-card fin-card" data-category="ahlak" data-keywords="63 giybet nedir? giybet arkadan konusmak">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">63. Gıybet Nedir?</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1192,7 +1193,7 @@
         </div>
 
         <!-- 64 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="64 yalan ve iftiranin gunahi yalan iftira munafik">
+        <div class="topic-card fin-card" data-category="ahlak" data-keywords="64 yalan ve iftiranin gunahi yalan iftira munafik">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">64. Yalan ve İftiranın Günahı</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1206,7 +1207,7 @@
         </div>
 
         <!-- 65 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="65 kibir, ucub ve kendini begenmislik kibir ucub kendini begenmek">
+        <div class="topic-card fin-card" data-category="ahlak" data-keywords="65 kibir, ucub ve kendini begenmislik kibir ucub kendini begenmek">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">65. Kibir, Ucub ve Kendini Beğenmişlik</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1220,7 +1221,7 @@
         </div>
 
         <!-- 66 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="66 haset ve gipta haset gipta cekememezlik">
+        <div class="topic-card fin-card" data-category="ahlak" data-keywords="66 haset ve gipta haset gipta cekememezlik">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">66. Haset ve Gıpta</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1235,7 +1236,7 @@
         </div>
 
         <!-- 67 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="67 israf ve mali bosa harcamak israf savurganlik">
+        <div class="topic-card fin-card" data-category="ahlak" data-keywords="67 israf ve mali bosa harcamak israf savurganlik">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">67. İsraf ve Malı Boşa Harcamak</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1250,7 +1251,7 @@
         </div>
 
         <!-- 68 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="68 riya (gosteris) ve gizli sirk riya gosteris kucuk sirk">
+        <div class="topic-card fin-card" data-category="ahlak" data-keywords="68 riya (gosteris) ve gizli sirk riya gosteris kucuk sirk">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">68. Riya (Gösteriş) ve Gizli Şirk</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1264,7 +1265,7 @@
         </div>
 
         <!-- 69 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="69 cimrilik ve asiri dunya hirsi cimrilik hirs dunya">
+        <div class="topic-card fin-card" data-category="ahlak" data-keywords="69 cimrilik ve asiri dunya hirsi cimrilik hirs dunya">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">69. Cimrilik ve Aşırı Dünya Hırsı</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1278,7 +1279,7 @@
         </div>
 
         <!-- 70 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="70 sabir ve sukur sabir sukur imtihan">
+        <div class="topic-card fin-card" data-category="ahlak" data-keywords="70 sabir ve sukur sabir sukur imtihan">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">70. Sabır ve Şükür</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1293,7 +1294,7 @@
         </div>
 
         <!-- 71 -->
-        <div class="topic-card" data-category="ahlak" data-keywords="71 ihsan bilinci ihsan bilinci cebrail hadisi">
+        <div class="topic-card fin-card" data-category="ahlak" data-keywords="71 ihsan bilinci ihsan bilinci cebrail hadisi">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Ahlak &amp; Günahlar</span><span class="topic-title">71. İhsan Bilinci</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1308,7 +1309,7 @@
         </div>
 
         <!-- 72 -->
-        <div class="topic-card" data-category="namaz" data-keywords="72 bayram namazi vacip tekbir hutbe">
+        <div class="topic-card fin-card" data-category="namaz" data-keywords="72 bayram namazi vacip tekbir hutbe">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">72. Bayram Namazı Nasıl Kılınır?</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1325,7 +1326,7 @@
         </div>
 
         <!-- 73 -->
-        <div class="topic-card" data-category="namaz" data-keywords="73 tesrik tekbirleri kurban bayrami arefe">
+        <div class="topic-card fin-card" data-category="namaz" data-keywords="73 tesrik tekbirleri kurban bayrami arefe">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">73. Teşrik Tekbirleri</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1341,7 +1342,7 @@
         </div>
 
         <!-- 74 -->
-        <div class="topic-card" data-category="oruc" data-keywords="74 kadir gecesi leyletul kadr ramazan son on gece">
+        <div class="topic-card fin-card" data-category="oruc" data-keywords="74 kadir gecesi leyletul kadr ramazan son on gece">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">74. Kadir Gecesi</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1357,7 +1358,7 @@
         </div>
 
         <!-- 75 -->
-        <div class="topic-card" data-category="oruc" data-keywords="75 zekat verilecek yerler tevbe 60 usul furu">
+        <div class="topic-card fin-card" data-category="oruc" data-keywords="75 zekat verilecek yerler tevbe 60 usul furu">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Oruç &amp; Hac</span><span class="topic-title">75. Zekâtın Verileceği Yerler</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1374,7 +1375,7 @@
         </div>
 
         <!-- 76 -->
-        <div class="topic-card" data-category="namaz" data-keywords="76 istihare namazi dua karar">
+        <div class="topic-card fin-card" data-category="namaz" data-keywords="76 istihare namazi dua karar">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">76. İstihare Namazı ve Duası</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1390,7 +1391,7 @@
         </div>
 
         <!-- 77 -->
-        <div class="topic-card" data-category="namaz" data-keywords="77 tesbihat namaz sonrasi subhanallah elhamdulillah allahu ekber">
+        <div class="topic-card fin-card" data-category="namaz" data-keywords="77 tesbihat namaz sonrasi subhanallah elhamdulillah allahu ekber">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">77. Namaz Sonrası Tesbihat</span></div><span class="topic-arrow">▼</span>
             </div>
@@ -1406,7 +1407,7 @@
         </div>
 
         <!-- 78 -->
-        <div class="topic-card" data-category="namaz" data-keywords="78 cuma gunu adabi gusul koku misvak erken">
+        <div class="topic-card fin-card" data-category="namaz" data-keywords="78 cuma gunu adabi gusul koku misvak erken">
             <div class="topic-header" onclick="toggleCard(this)">
                 <div class="topic-info"><span class="topic-category-tag">Namaz Esasları</span><span class="topic-title">78. Cuma Günü Adabı</span></div><span class="topic-arrow">▼</span>
             </div>
